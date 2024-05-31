@@ -89,7 +89,8 @@
         function promptForCity() {
     const city = prompt("Please enter your city:", "");
     if (city) {
-        fetchWeather(city); // Trim whitespace from the input
+        fetchWeather(city);
+        currentCity = city.trim(); // Trim whitespace from the input
     }
 }
 
@@ -137,6 +138,7 @@
                     const city = data.city || data.locality;
                     document.getElementById('city').innerText = "City: " + city;
                     fetchWeather(city);
+                    currentCity = city;
                     // Use the fetched city to get weather data or other information
                 })
                 .catch(error => {
