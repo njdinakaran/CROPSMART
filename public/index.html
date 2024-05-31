@@ -23,9 +23,9 @@
             <a href="#" class="logo">CropSmart</a>
         
             <ul class="navlist">
-                <li><a href="#" class="home">Crop Recommendation</a></li>
-                <li><a href="#" class="home">Pest Identification</a></li>
-                <li><a href="#" class="home">Weed Identification</a></li>
+                <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
+                <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
+                <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
                 <li><a href="#" class="leave" onclick="logout()">About</a></li>
             </ul>
         
@@ -179,5 +179,19 @@
         }
 
         window.onload = getLocation;
+
+
+
+        // page movement functions
+
+        function movecrop(){
+    window.location.href = `crop_predict.html`;
+        }
+        function movepest(){
+    window.location.href = `pest_predict.html`;
+        }
+        function moveweed(){
+    window.location.href = `weed_predict.html`;
+        }
     </script>
 </html>
