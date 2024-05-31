@@ -40,8 +40,109 @@
             <div class="right">
                 <h2>weather Section</h2>
                 <p>display whether details</p>
+                <p id="city"></p>
+                <p id="weather"></p>
+                <p id="forecast"></p>
+
             </div>
         </div>
 
     </body>
+
+    <script>
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            fetchCityName(latitude, longitude);
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    promptForCity();
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    promptForCity();
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    promptForCity();
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    promptForCity();
+                    break;
+            }
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+                promptForCity();
+            }
+        }
+
+        function promptForCity() {
+            const city = prompt("Please enter your city:");
+            if (city) {
+                document.getElementById('city').innerText = "City: " + city;
+                fetchWeather(city);
+
+                // Use the entered city to fetch weather data or other information
+            }
+        }
+
+        function fetchCityName(latitude, longitude) {
+            const apiKey = 'bdc_7ef6213578c94844915f32a5cc46c020'; // Replace with your actual API key
+            const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const city = data.city || data.locality;
+                    document.getElementById('city').innerText = "City: " + city;
+                    // Use the fetched city to get weather data or other information
+                })
+                .catch(error => {
+                    console.error('Error fetching city name:', error);
+                    promptForCity();
+                });
+        }
+        function fetchWeather(city) {
+            const apiKey = 'c31f6a98e766fa63e3fedbbf0fed011d'; // Replace with your OpenWeatherMap API key
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+            const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+            fetch(weatherUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const weather = `Current Weather: ${data.weather[0].description}, Temperature: ${data.main.temp}°C`;
+                    document.getElementById('weather').innerText = weather;
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+
+            fetch(forecastUrl)
+                .then(response => response.json())
+                .then(data => {
+                    let forecast = '4-Day Forecast:';
+                    for (let i = 0; i < data.list.length; i += 8) { // 8 intervals per day
+                        const date = new Date(data.list[i].dt_txt).toDateString();
+                        const temp = data.list[i].main.temp;
+                        const desc = data.list[i].weather[0].description;
+                        forecast += `<br>${date}: ${desc}, Temperature: ${temp}°C`;
+                    }
+                    document.getElementById('forecast').innerHTML = forecast;
+                })
+                .catch(error => {
+                    console.error('Error fetching forecast data:', error);
+                });
+        }
+
+        window.onload = getLocation;
+    </script>
 </html>
