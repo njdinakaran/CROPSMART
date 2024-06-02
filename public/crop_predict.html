@@ -26,10 +26,46 @@
                 <li><a href="#" class="home" onclick="movehome()">Home</a></li>
                 <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
                 <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
-                <li><a href="#" class="leave" onclick="logout()">About</a></li>
             </ul>
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
-          </body>
+
+          <p id="city"></p>
+          <p id="season"></p>
+
+          <div id="suggestioncrops">
+
+          </div>
+          <br><br>
+
+          <div>
+            <h1>hello</h1>
+            <p>hello </p>
+
+          </div>
+
+        </body>
+
+
+          <!-- Page movements -->
+          <script>
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const cityValue = urlParams.get('city');
+
+            document.getElementById('city').innerText = "City: " + cityValue;
+            };
+
+            function movehome(){
+                window.location.href = `index.html?city=${encodeURIComponent(city)}`;
+            }
+            function movepest(){
+                window.location.href = `pest_predict.html?city=${encodeURIComponent(city)}`;
+            }
+            function moveweed(){
+                window.location.href = `weed_predict.html?city=${encodeURIComponent(city)}`;
+            }
+
+          </script>
 </html>

@@ -26,10 +26,32 @@
                 <li><a href="#" class="home" onclick="movehome()">Home</a></li>
                 <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
                 <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
-                <li><a href="#" class="leave" onclick="logout()">About</a></li>
             </ul>
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
           </body>
+
+
+          <script>
+            function getCityFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('city');
+            }
+
+            window.onload = function() {
+            const city = getCityFromUrl();
+            };
+
+            function movehome(){
+                window.location.href = `index.html?city=${encodeURIComponent(city)}`;
+            }
+            function movecrop(){
+                window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
+            }
+            function moveweed(){
+                window.location.href = `weed_predict.html?city=${encodeURIComponent(city)}`;
+            }
+
+          </script>
 </html>
