@@ -1490,8 +1490,8 @@ function promptForCityWithSuggestions() {
         // Display suggestions
         const suggestions = cities.filter(city => city.city.toLowerCase().startsWith(userInput.toLowerCase()));
         if (suggestions.length > 0) {
-            console.log("Suggestions:");
-            suggestions.forEach(city => console.log(city.city));
+            // console.log("Suggestions:");
+            // suggestions.forEach(city => console.log(city.city));
         } else {
             console.log("No suggestions found for '" + userInput + "'");
         }
@@ -1504,13 +1504,173 @@ function promptForCityWithSuggestions() {
     return userInput;
 }
 
-// // Example usage:
-// const cityName = promptForCityWithSuggestions();
-// var mycityname = "";
-// console.log("city name = =", mycityname);
-// if (cityName !== null) {
-//     document.getElementById('city').innerText = "City: " + cityName;
-//     console.log("You selected:", cityName);
+function showPosition(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    fetchCityName(latitude, longitude);
+}
 
-//     // Do something with the selected city
-// }
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+        promptForCityWithSuggestions();
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            promptForCityWithSuggestions();
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            promptForCityWithSuggestions();
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            promptForCityWithSuggestions();
+            break;
+    }
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+        promptForCityWithSuggestions();
+    }
+}
+
+
+
+//fetch location based on current location
+
+function fetchCityName(latitude, longitude) {
+    const apiKey = 'bdc_7ef6213578c94844915f32a5cc46c020'; // Replace with your actual API key
+    const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const city = data.city || data.locality;
+            document.getElementById('city').innerText =city;
+            fetchWeather(city);
+            currentCity = city;
+            // Use the fetched city to get weather data or other information
+        })
+        .catch(error => {
+            console.error('Error fetching city name:', error);
+            promptForCity();
+        });
+}
+
+//fetch weather details
+function fetchWeather(city) {
+    const apiKey = 'c31f6a98e766fa63e3fedbbf0fed011d'; // Replace with your OpenWeatherMap API key
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+    fetch(weatherUrl)
+        .then(response => response.json())
+        .then(data => {
+            const weather = `Current Weather: ${data.weather[0].description}, Temperature: ${data.main.temp}°C`;
+            document.getElementById('weather').innerText = weather;
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+        });
+
+    fetch(forecastUrl)
+        .then(response => response.json())
+        .then(data => {
+            let forecast = '4-Day Forecast:';
+            for (let i = 0; i < data.list.length; i += 8) { // 8 intervals per day
+                const date = new Date(data.list[i].dt_txt).toDateString();
+                const temp = data.list[i].main.temp;
+                const desc = data.list[i].weather[0].description;
+                forecast += `<br>${date}: ${desc}, Temperature: ${temp}°C`;
+            }
+            document.getElementById('forecast').innerHTML = forecast;
+        })
+        .catch(error => {
+            console.error('Error fetching forecast data:', error);
+        });
+}
+
+window.onload = getLocation;
+
+const regiondata = [
+{
+"region": "Southern",
+"states": [
+"Andhra Pradesh",
+"Karnataka",
+"Kerala",
+"Puducherry",
+"Tamil Nadu",
+"Telangana"
+]
+},
+{
+"region": "Northern",
+"states": [
+"Chandigarh",
+"Delhi",
+"Haryana",
+"Himachal Pradesh",
+"Jammu and Kashmir",
+"Ladakh",
+"Punjab",
+"Rajasthan",
+"Uttarakhand"
+]
+},
+{
+"region": "Western",
+"states": [
+"Dadra and Nagar Haveli and Daman and Diu (UT)",
+"Goa",
+"Gujarat",
+"Maharashtra"
+]
+},
+{
+"region": "Eastern",
+"states": [
+"Andhra Pradesh",
+"Arunachal Pradesh",
+"Assam",
+"Bihar",
+"Chhattisgarh",
+"Jharkhand",
+"Manipur",
+"Meghalaya",
+"Mizoram",
+"Nagaland",
+"Odisha",
+"Sikkim",
+"Tripura",
+"West Bengal"
+]
+}
+];
+
+
+
+
+
+function movecrop() {
+    const cityValue = document.getElementById("city").innerText;
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+}
+function movepest(){
+            
+    const cityValue = document.getElementById("city").innerText;
+    const encodedCityValue = encodeURIComponent(cityValue);
+window.location.href = "pest_predict?city=" + encodedCityValue;
+}
+function moveweed(){
+    
+    const cityValue = document.getElementById("city").innerText;
+    const encodedCityValue = encodeURIComponent(cityValue);
+window.location.href = "weed_predict?city=" + encodedCityValue;
+}

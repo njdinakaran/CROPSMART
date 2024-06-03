@@ -1,12 +1,14 @@
 <html>
     <head>
         <title>
-            CropSmart - Pest prediction
+            CropSmart - Home page
         </title>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="css/pest_predictstyle.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/indexstyle.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexstyle.css') }}">
+
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -15,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    
     </head>
 
     <body>
@@ -23,35 +25,37 @@
             <a href="#" class="logo">CropSmart</a>
         
             <ul class="navlist">
-                <li><a href="#" class="home" onclick="movehome()">Home</a></li>
                 <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
+                <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
                 <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
+                <li><a href="#" class="leave" onclick="logout()">About</a></li>
             </ul>
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
-          </body>
 
+          <div class="content">
+            <div class="left">
+                <h2>crop Section</h2>
+                <p>To display images of crops and details</p>
+            </div>
+            <div class="right">
+                <h2>weather Section</h2>
+                <p>display weather details</p>
 
-          <script>
-            function getCityFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('city');
-            }
+                <p id="city"></p>
+                <p id="region"></p>
+                <p id="weather"></p>
+                <p id="forecast"></p>
 
-            window.onload = function() {
-            const city = getCityFromUrl();
-            };
+            </div>
+        </div>
 
-            function movehome(){
-                window.location.href = `index.html?city=${encodeURIComponent(city)}`;
-            }
-            function movecrop(){
-                window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
-            }
-            function moveweed(){
-                window.location.href = `weed_predict.html?city=${encodeURIComponent(city)}`;
-            }
+    </body>      
 
-          </script>
+    
+<script src="{{ url_for('static', filename='js/indexscript.js') }}"></script>
+
+    <!-- <script type="text/javascript" src="js/indexscript.js"></script> -->
+
 </html>

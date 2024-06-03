@@ -1,12 +1,14 @@
 <html>
     <head>
         <title>
-            CropSmart - Crop prediction
+            CropSmart - Pest prediction
         </title>
         <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="css/crop_predictstyle.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pest_predictstyle.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="css/pest_predictstyle.css"> -->
+    
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -24,53 +26,34 @@
         
             <ul class="navlist">
                 <li><a href="#" class="home" onclick="movehome()">Home</a></li>
-                <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
+                <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
                 <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
             </ul>
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
-
-                   
-          <p id="season"></p>
-
-          <div id="container">
-
-          <div id="suggestioncrops">
-            <p id="city" style="color: black;"></p><br>
-            <p id="state" style="color: black;"></p><br>
-            <p id="region" style="color: black;"></p><br>
-            <p id="crops" style="color: black;"></p><br>
-          </div>
-          <form>
-            <input>
-          </form>
-        </div>
-
-        </body>
+          </body>
 
 
-          <!-- Page movements -->
           <script>
+            function getCityFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('city');
+            }
+
             window.onload = function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const cityValue = urlParams.get('city');
-
-            document.getElementById('city').innerText =cityValue;
-            fetchCityState(cityValue);
-
+            const city = getCityFromUrl();
             };
+
             function movehome(){
                 window.location.href = `index.html?city=${encodeURIComponent(city)}`;
             }
-            function movepest(){
-                window.location.href = `pest_predict.html?city=${encodeURIComponent(city)}`;
+            function movecrop(){
+                window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
             }
             function moveweed(){
                 window.location.href = `weed_predict.html?city=${encodeURIComponent(city)}`;
             }
 
           </script>
-        <script type="text/javascript" src="js/datascript.js"></script>
-
 </html>

@@ -63,12 +63,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 .container {
-  display:block;
+  position: relative;
 }
 
 
 form {
-  width: 50%; /* Adjust as needed */
+  outline: #ddd;
+  margin: auto;
+  margin-top: 600px;
+  width: 605; /* Adjust as needed */
 }
