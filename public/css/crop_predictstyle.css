@@ -51,16 +51,24 @@
     cursor: pointer;
     display: none;
   }
-
   #suggestioncrops {
-    display:flex;
+    
     width: 80%;
     height: 500px;
     background-color: white;
     margin: 0 auto; /* Centers the div horizontally */
     /* If you also want to center the div vertically */
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.container {
+  display:block;
+}
+
+
+form {
+  width: 50%; /* Adjust as needed */
 }

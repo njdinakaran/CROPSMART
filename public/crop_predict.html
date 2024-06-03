@@ -31,19 +31,21 @@
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
 
-          <p id="city"></p>
+                   
           <p id="season"></p>
 
+          <div id="container">
+
           <div id="suggestioncrops">
-
+            <p id="city" style="color: black;"></p><br>
+            <p id="state" style="color: black;"></p><br>
+            <p id="region" style="color: black;"></p><br>
+            <p id="crops" style="color: black;"></p><br>
           </div>
-          <br><br>
-
-          <div>
-            <h1>hello</h1>
-            <p>hello </p>
-
-          </div>
+          <form>
+            <input>
+          </form>
+        </div>
 
         </body>
 
@@ -54,9 +56,10 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const cityValue = urlParams.get('city');
 
-            document.getElementById('city').innerText = "City: " + cityValue;
-            };
+            document.getElementById('city').innerText =cityValue;
+            fetchCityState(cityValue);
 
+            };
             function movehome(){
                 window.location.href = `index.html?city=${encodeURIComponent(city)}`;
             }
@@ -68,4 +71,6 @@
             }
 
           </script>
+        <script type="text/javascript" src="js/datascript.js"></script>
+
 </html>
