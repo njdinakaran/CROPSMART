@@ -1663,14 +1663,8 @@ function movecrop() {
     window.location.href = "/crop_predict?city=" + encodedCityValue;
 }
 function movepest(){
-            
-    const cityValue = document.getElementById("city").innerText;
-    const encodedCityValue = encodeURIComponent(cityValue);
-window.location.href = "pest_predict?city=" + encodedCityValue;
+window.location.href = "pest_predict";
 }
 function moveweed(){
-    
-    const cityValue = document.getElementById("city").innerText;
-    const encodedCityValue = encodeURIComponent(cityValue);
-window.location.href = "weed_predict?city=" + encodedCityValue;
+window.location.href = "weed_predict";
 }

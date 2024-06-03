@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Result</title>
+</head>
+<body>
+    <h1>Crop Prediction Result</h1>
+    the result is {{data}}
+
+    {% if data == 0 %}
+        <p>The predicted crop is: Rice</p>
+    {% elif data == 1 %}
+        <p>The predicted crop is: Maize</p>
+    {% elif data == 2 %}
+        <p>The predicted crop is: Chickpea</p>
+    {% elif data == 3 %}
+        <p>The predicted crop is: Kidney Beans</p>
+    {% elif data == 4 %}
+        <p>The predicted crop is: Pigeon Peas</p>
+    {% elif data == 5 %}
+        <p>The predicted crop is: Moth Beans</p>
+    {% elif data == 6 %}
+        <p>The predicted crop is: Mung Bean</p>
+    {% elif data == 7 %}
+        <p>The predicted crop is: Black Gram</p>
+    {% elif data == 8 %}
+        <p>The predicted crop is: Lentil</p>
+    {% elif data == 9 %}
+        <p>The predicted crop is: Pomegranate</p>
+    {% elif data == 10 %}
+        <p>The predicted crop is: Banana</p>
+    {% elif data == 11 %}
+        <p>The predicted crop is: Mango</p>
+    {% elif data == 12 %}
+        <p>The predicted crop is: Grapes</p>
+    {% elif data == 13 %}
+        <p>The predicted crop is: Watermelon</p>
+    {% elif data == 14 %}
+        <p>The predicted crop is: Muskmelon</p>
+    {% elif data == 15 %}
+        <p>The predicted crop is: Orange</p>
+    {% elif data == 16 %}
+        <p>The predicted crop is: Papaya</p>
+    {% elif data == 17 %}
+        <p>The predicted crop is: Coconut</p>
+    {% elif data == 18 %}
+        <p>The predicted crop is: Cotton</p>
+    {% elif data == 19 %}
+        <p>The predicted crop is: Jute</p>
+    {% elif data == 20 %}
+        <p>The predicted crop is: Coffee</p>
+    {% elif data == 21 %}
+        <p>The predicted crop is: Groundnuts</p>
+    {% else %}
+        <p>The predicted crop is unknown</p>
+    {% endif %}
+    
+    
+
+</body>
+</html>
