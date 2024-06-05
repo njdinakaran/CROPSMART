@@ -32,6 +32,18 @@
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
+
+          <div class="container">
+            <h2>Pest Prediction</h2>
+            <input type="file" id="imageInput" accept="image/*" capture="camera" onchange="displayImage(event)">
+            <br>
+            <img id="displayedImage" style="max-width: 100%; height: auto; display: none;">
+            <br>
+            <button onclick="predict()">Predict</button>
+        </div>
+    
+
+
           </body>
 
 
@@ -54,6 +66,24 @@
             function moveweed(){
                 window.location.href = `weed_predict.html?city=${encodeURIComponent(city)}`;
             }
+
+            function displayImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const displayedImage = document.getElementById('displayedImage');
+                    displayedImage.src = e.target.result;
+                    displayedImage.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function predict() {
+            // Implement the predict functionality here
+            alert('Prediction functionality is not yet implemented.');
+        }
 
           </script>
 </html>

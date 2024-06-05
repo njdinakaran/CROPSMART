@@ -4,6 +4,14 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 
+from keras.models import load_model  # TensorFlow is required for Keras to work
+from PIL import Image, ImageOps  # Install pillow instead of PIL
+import numpy as np
+from keras.preprocessing import image
+
+from tensorflow.keras.preprocessing.image import load_img
+
+
 
 app = Flask(__name__)
 # Define the path to the model file
@@ -57,14 +65,31 @@ def home():
     pred = model.predict(arr)
     print(pred)
     return render_template('crop_result.html', data=pred)
-    
 
 
+#weed model
+weedmodel = load_model('weed_model.h5')
+weedmodel.make_predict_function()
 
+def predict_label(img_path):
+    img = Image.open(img_path)
+    img = img.resize((224, 224))  # Resize the image to the required size
+    img_array = np.array(img) / 255.0  # Convert image to numpy array and normalize
+    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    p = np.argmax(weedmodel.predict(img_array), axis=1)
+    return p
 
+@app.route("/submit", methods = ['GET', 'POST'])
+def get_output():
+	if request.method == 'POST':
+		img = request.files['my_image']
 
+		img_path = "static/" + img.filename	
+		img.save(img_path)
 
+		p = predict_label(img_path)
 
+	return render_template("weed_result.html", data=p)
 
 
 

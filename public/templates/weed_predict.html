@@ -32,6 +32,20 @@
         
             <div class="bx bx-menu" id="menu-icon"></div>
           </header>
+          <div class="container">
+            <h2>Weed Prediction</h2>
+
+            <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
+            <label>Upload your image</label>
+            <input type="file" name="my_image" id="imageInput" accept="image/*" capture="camera" onchange="displayImage(event)">
+            <br>
+            <img id="displayedImage" style="max-width: 100%; height: auto; display: none;">
+            <br>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        </div>
+
+
           </body>
 
           <script>
@@ -53,6 +67,19 @@
             function movecrop(){
                 window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
             }
+            
+            function displayImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const displayedImage = document.getElementById('displayedImage');
+                    displayedImage.src = e.target.result;
+                    displayedImage.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
           </script>
 </html>

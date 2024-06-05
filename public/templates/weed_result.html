@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Result</title>
+</head>
+<body>
+  <h1>weed Prediction Result</h1>
+
+  the result is {{data}}
+
+  {% if data == 0 %}
+    <p>The predicted weed is: Amaranthus spp</p>
+{% elif data == 1 %}
+    <p>The predicted weed is: Chenopodium album</p>
+{% elif data == 2 %}
+    <p>The predicted weed is: Cirsium arvense</p>
+{% elif data == 3 %}
+    <p>The predicted weed is: Commelina benghalensis</p>
+{% elif data == 4 %}
+    <p>The predicted weed is: Convolvulus arvensis</p>
+{% elif data == 5 %}
+    <p>The predicted weed is: Cyperus rotundus</p>
+{% elif data == 6 %}
+    <p>The predicted weed is: Dactyloctenium aegyptium</p>
+{% elif data == 7 %}
+    <p>The predicted weed is: Echinochloa crus-galli</p>
+{% elif data == 8 %}
+    <p>The predicted weed is: Parthenium hysterophorus</p>
+{% elif data == 9 %}
+    <p>The predicted weed is: Phalaris minor</p>
+{% endif %}
+
+</body>
+</html>
