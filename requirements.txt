@@ -1,4 +1,0 @@
-Flask==3.0.3
-Werkzeug==3.0.1
-Python==3.11.8
-tensorflow==2.12.0
