@@ -11,7 +11,7 @@ from keras.preprocessing import image
 
 from tensorflow.keras.preprocessing.image import load_img
 
-
+import tensorflow as tf
 
 app = Flask(__name__)
 # Define the path to the model file
@@ -90,6 +90,48 @@ def get_output():
 		p = predict_label(img_path)
 
 	return render_template("weed_result.html", data=p)
+
+
+# pest identification===================================
+
+model_path = 'pest_ince.tflite'
+# Load the TFLite model and allocate tensors
+interpreter = tf.lite.Interpreter(model_path=model_path)
+interpreter.allocate_tensors()
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Function to preprocess the image
+def preprocess_image(image_path, target_size=(224, 224)):
+    img = Image.open(image_path)
+    img = img.resize(target_size)
+    img = np.array(img) / 255.0  # Normalize to [0, 1]
+    img = img.astype(np.float32)  # Convert to FLOAT32
+    img = np.expand_dims(img, axis=0)
+    interpreter.set_tensor(input_details[0]['index'], img)
+        # Run the model
+    interpreter.invoke()
+    # Get the predicted class
+    output_data = interpreter.get_tensor(output_details[0]['index'])
+    predicted_class = np.argmax(output_data)
+
+    return predicted_class
+
+
+
+@app.route("/pestsubmit", methods = ['GET', 'POST'])
+def get_prediction():
+	if request.method == 'POST':
+		img = request.files['my_image']
+
+		img_path = "static/" + img.filename	
+		img.save(img_path)
+
+		p = preprocess_image(img_path)
+
+	return render_template("pest_result.html", data=p)
 
 
 

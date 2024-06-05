@@ -35,12 +35,15 @@
 
           <div class="container">
             <h2>Pest Prediction</h2>
-            <input type="file" id="imageInput" accept="image/*" capture="camera" onchange="displayImage(event)">
+
+            <form class="form-horizontal" action="/pestsubmit" method="post" enctype="multipart/form-data">
+            <label>Upload your image</label>
+            <input type="file" name="my_image" id="imageInput" accept="image/*" capture="camera" onchange="displayImage(event)">
             <br>
-            <img id="displayedImage" style="max-width: 100%; height: auto; display: none;">
+            <img id="displayedImage" style="max-width: 50%; height: auto; display: none;">
             <br>
-            <button onclick="predict()">Predict</button>
-        </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
     
 
 
@@ -78,11 +81,6 @@
                 };
                 reader.readAsDataURL(input.files[0]);
             }
-        }
-
-        function predict() {
-            // Implement the predict functionality here
-            alert('Prediction functionality is not yet implemented.');
         }
 
           </script>
