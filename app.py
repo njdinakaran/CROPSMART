@@ -7,6 +7,10 @@ import os
 from flask import jsonify
 from flask import url_for
 
+import os
+from flask import jsonify
+from flask import url_for
+
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
@@ -18,6 +22,10 @@ import tensorflow as tf
 
 app = Flask(__name__)
 # Define the path to the model file
+
+# defining image directory
+
+
 
 @app.route('/')
 def main():
