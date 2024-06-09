@@ -38,13 +38,24 @@
           <p id="season"></p>
 
 
-          <div id="suggestioncrops">
-            <p id="city" style="color: black;"></p><br>
-            <p id="state" style="color: black;"></p><br>
-            <p id="region" style="color: black;"></p><br>
-            <p id="crops" style="color: black;"></p><br>
-          </div>
+                  
 
+          <main>
+
+        <div class="navigation">
+            <i class="fa-solid fa-caret-left fa-3x" id="pbutton"></i>
+            <div class="card-container">
+              <div class="card" id="crop-card">
+                  <img id="crop-image" src="" alt="Image not avaliable">
+                  <div class="card-content">
+                      <h2 id="crop-title">Crop Name</h2>
+                      <p id="crop-description">Crop Description</p>
+                  </div>
+              </div>
+            </div>
+            <i class="fa-solid fa-caret-right fa-3x" id="nbutton"></i>
+        </div>
+          </main>
 
             <form method="post" , action="{{url_for('home')}}">
               <label for="nitrogen">N (Nitrogen):</label>
@@ -69,10 +80,7 @@
               <input type="number" id="rainfall" name="rainfall" min="0" step="any" required><br><br>
           
               <button type="submit">Predict</button>
-          </form>
-          
-         
-
+          </form>        
         </body>
 
 
@@ -82,8 +90,9 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const cityValue = urlParams.get('city');
 
-            document.getElementById('city').innerText =cityValue;
+            // document.getElementById('city').innerText =cityValue;
             fetchCityState(cityValue);
+            
 
             };
             function movehome(){
@@ -97,10 +106,9 @@
                 window.location.href = "/weed_predict";
             }
 
+
           </script>
 
 <script src="{{ url_for('static', filename='js/datascript.js') }}"></script>
-
-        <!-- <script type="text/javascript" src="js/datascript.js"></script> -->
 
 </html>
