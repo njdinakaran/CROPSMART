@@ -1,18 +1,16 @@
-<html>
-    <head>
-        <title>
-            CropSmart - Weed prediction
-        </title>
-        <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        CropSmart - Weed prediction
+    </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/weed_predictstyle.css') }}">
 
-    <!-- <link rel="stylesheet" type="text/css" href="css/weed_predictstyle.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
@@ -21,65 +19,79 @@
     </head>
 
     <body>
-        <header>
+        <header class="header">
             <a href="#" class="logo">CropSmart</a>
-        
-            <ul class="navlist">
-                <li><a href="#" class="home" onclick="movehome()">Home</a></li>
-                <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
-                <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
-            </ul>
-        
-            <div class="bx bx-menu" id="menu-icon"></div>
+
+            <input type="checkbox" id="check">
+            <label for="check" class="icons">
+                <i class="bx bx-menu" id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+            </label>
+
+            <nav class="navbar">
+                <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
+                <a href="#" class="home" style="--i:1" onclick="movecrop()">Crop Recommendation</a>
+                <a href="#" class="home" style="--i:2" onclick="movepest()">Pest Identification</a>
+            </nav>
           </header>
-          <div class="container">
-            <h2>Weed Prediction</h2>
 
-            <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
-            <label>Upload your image</label>
-            <input type="file" name="my_image" id="imageInput" accept="image/*" capture="camera" onchange="displayImage(event)">
-            <br>
-            <img id="displayedImage" style="max-width: 100%; height: auto; display: none;">
-            <br>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+          <div class="hero">
+            <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data" id="drop-area">
+                <label for="input-file">
+                    <input type="file" name="my_image" accept="image/*" capture="camera" id="input-file" hidden>
+                    <div id="img-view">
+                        <i class='bx bxs-cloud-upload' id="upload-icon"></i>
+                        <p>Drag and drop or click here<br>to upload image</p>
+                        <span>Upload any images from desktop</span>
+                    </div>
+                </label>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
         </div>
+    </body>
+    
+    <script>
+    function getCityFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('city');
+    }
 
+    window.onload = function() {
+        const city = getCityFromUrl();
+    };
 
-          </body>
+    function movehome() {
+        window.location.href = `index.html?city=${encodeURIComponent(city)}`;
+    }
 
-          <script>
-            function getCityFromUrl() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('city');
-            }
+    function movepest() {
+        window.location.href = `pest_predict.html?city=${encodeURIComponent(city)}`;
+    }
 
-            window.onload = function() {
-            const city = getCityFromUrl();
-            };
-
-            function movehome(){
-                window.location.href = `index.html?city=${encodeURIComponent(city)}`;
-            }
-            function movepest(){
-                window.location.href = `pest_predict.html?city=${encodeURIComponent(city)}`;
-            }
-            function movecrop(){
-                window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
-            }
-            
-            function displayImage(event) {
-            const input = event.target;
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const displayedImage = document.getElementById('displayedImage');
-                    displayedImage.src = e.target.result;
-                    displayedImage.style.display = 'block';
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-          </script>
+    function movecrop() {
+        window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
+    }
+    const dropArea = document.getElementById('drop-area');
+    const inputFile = document.getElementById('input-file');
+    const imageView = document.getElementById('img-view');
+    
+    inputFile.addEventListener("change", uploadImage);
+    
+    function uploadImage() {
+        let imgLink = URL.createObjectURL(inputFile.files[0]);
+        imageView.style.backgroundImage = `url(${imgLink})`;
+        imageView.textContent = "";
+        imageView.style.border = 0;
+    }
+    
+    dropArea.addEventListener("dragover", function(e) {
+        e.preventDefault();
+    });
+    
+    dropArea.addEventListener("drop", function(e) {
+        e.preventDefault();
+        inputFile.files = e.dataTransfer.files;
+        uploadImage();
+    });
+    </script>
 </html>

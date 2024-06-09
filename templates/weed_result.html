@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Result</title>
+    <title>Weed Result</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/weed_resultstyle.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
+
 <body>
-  <h1>weed Prediction Result</h1>
+    <header class="header">
+        <a href="#" class="logo">CropSmart</a>
+    
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class="bx bx-menu" id="menu-icon"></i>
+            <i class="bx bx-x" id="close-icon"></i>
+        </label>
+    
+        <nav class="navbar">
+            <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
+            <a href="#" class="home" style="--i:1" onclick="movecrop()">Crop Recommendation</a>
+            <a href="#" class="home" style="--i:2" onclick="movepest()">Pest Identification</a>
+        </nav>
+      </header>
 
-  the result is {{data}}
-
-  {% if data == 0 %}
-    <p>The predicted weed is: Amaranthus spp</p>
-{% elif data == 1 %}
-    <p>The predicted weed is: Chenopodium album</p>
-{% elif data == 2 %}
-    <p>The predicted weed is: Cirsium arvense</p>
-{% elif data == 3 %}
-    <p>The predicted weed is: Commelina benghalensis</p>
-{% elif data == 4 %}
-    <p>The predicted weed is: Convolvulus arvensis</p>
-{% elif data == 5 %}
-    <p>The predicted weed is: Cyperus rotundus</p>
-{% elif data == 6 %}
-    <p>The predicted weed is: Dactyloctenium aegyptium</p>
-{% elif data == 7 %}
-    <p>The predicted weed is: Echinochloa crus-galli</p>
-{% elif data == 8 %}
-    <p>The predicted weed is: Parthenium hysterophorus</p>
-{% elif data == 9 %}
-    <p>The predicted weed is: Phalaris minor</p>
-{% endif %}
-
+      <section>
+        <div class="container flex">
+          <div class="left">
+            <div class="main_image">
+                <img src="{{ url_for('static', filename=img_path.split('/')[-1]) }}" alt="Uploaded Image">
+            </div>
+          </div>
+          <div class="right">
+            <h3>{{ weed_name }}</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <!-- <h5>Color-Rose Gold</h5> -->
+            
+            <button>Read More</button>
+          </div>
+        </div>
+      </section>
 </body>
 </html>

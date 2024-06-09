@@ -79,17 +79,31 @@ def predict_label(img_path):
     p = np.argmax(weedmodel.predict(img_array), axis=1)
     return p
 
-@app.route("/submit", methods = ['GET', 'POST'])
+WEED_NAMES = {
+    0: "Amaranthus spp",
+    1: "Chenopodium album",
+    2: "Cirsium arvense",
+    3: "Commelina benghalensis",
+    4: "Convolvulus arvensis",
+    5: "Cyperus rotundus",
+    6: "Dactyloctenium aegyptium",
+    7: "Echinochloa crus-galli",
+    8: "Parthenium hysterophorus",
+    9: "Phalaris minor"
+}
+
+@app.route("/submit", methods=['GET', 'POST'])
 def get_output():
-	if request.method == 'POST':
-		img = request.files['my_image']
+    if request.method == 'POST':
+        img = request.files['my_image']
 
-		img_path = "static/" + img.filename	
-		img.save(img_path)
+        img_path = "static/" + img.filename
+        img.save(img_path)
 
-		p = predict_label(img_path)
+        p = predict_label(img_path)
+        weed_name = WEED_NAMES.get(p[0], "Unknown Weed")
 
-	return render_template("weed_result.html", data=p)
+    return render_template("weed_result.html", data=p, weed_name=weed_name, img_path=img_path)
 
 
 # pest identification===================================
@@ -119,22 +133,52 @@ def preprocess_image(image_path, target_size=(224, 224)):
 
     return predicted_class
 
+PEST_NAMES = {
+    0: "Anoplophora chinensis",
+    1: "Apriona germari hope",
+    2: "Cerambycidae larvae",
+    3: "Chalcophora japonica",
+    4: "Clostera anachoreta",
+    5: "Cnidocampa flavescens Walker pupa",
+    6: "Cnidocampa flavescens walker",
+    7: "Drosicha contrahens female",
+    8: "Drosicha contrahens male",
+    9: "Erthesina fullo",
+    10: "Erthesina fullo nymph",
+    11: "Erthesina fullo nymph-2",
+    12: "Hyphantria cunea",
+    13: "Hyphantria cunea larvae",
+    14: "Hyphantria cunea pupa",
+    15: "Latoia consocia Walker",
+    16: "Latoia consocia Walker larvae",
+    17: "Micromelalopha troglodyta Graeser",
+    18: "Micromelalopha troglodyta Graeser larvae",
+    19: "Monochamus alternatus",
+    20: "Plagiodera versicolora Laicharting",
+    21: "Plagiodera versicolora Laicharting larvae",
+    22: "Plagiodera versicolora Laicharting ovum",
+    23: "Psacothea hilaris Pascoe",
+    24: "Psilogramma menephron",
+    25: "Psilogramma menephron larvae",
+    26: "Sericinus montela",
+    27: "Sericinus montela larvae",
+    28: "Spilarctia subcarnea Walker",
+    29: "Spilarctia subcarnea Walker larvae",
+    30: "Spilarctia subcarnea Walker larvae-2"
+}
 
-
-@app.route("/pestsubmit", methods = ['GET', 'POST'])
+@app.route("/pestsubmit", methods=['GET', 'POST'])
 def get_prediction():
-	if request.method == 'POST':
-		img = request.files['my_image']
+    if request.method == 'POST':
+        img = request.files['my_image']
 
-		img_path = "static/" + img.filename	
-		img.save(img_path)
+        img_path = "static/" + img.filename
+        img.save(img_path)
 
-		p = preprocess_image(img_path)
+        p = preprocess_image(img_path)
+        pest_name = PEST_NAMES.get(p, "Unknown Pest")
 
-	return render_template("pest_result.html", data=p)
-
-
-
+    return render_template("pest_result.html", data=p, pest_name=pest_name, img_path=img_path)
 
 if __name__ == "__main__":
     app.run(debug=True)
