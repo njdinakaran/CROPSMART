@@ -7,6 +7,9 @@ import os
 from flask import jsonify
 from flask import url_for
 
+import os
+from flask import jsonify
+from flask import url_for
 
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
@@ -26,12 +29,10 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-
 @app.route('/crop_predict')
 def crop_predict():
     city = request.args.get('city')
     return render_template('crop_predict.html', city=city)
-
 
 @app.route('/index')
 def index_move():
@@ -110,7 +111,6 @@ def get_output():
         weed_name = WEED_NAMES.get(p[0], "Unknown Weed")
 
     return render_template("weed_result.html", data=p, weed_name=weed_name, img_path=img_path)
-
 
 # pest identification===================================
 
