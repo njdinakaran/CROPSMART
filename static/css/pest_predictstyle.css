@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  /* z-index: 100; */
 
   &::before {
       content: '';
@@ -52,13 +52,41 @@
   }
 }
 
+
 .hero {
+  padding-top: 100px; /* Adjust the value for desired spacing */
+
   width: 100%;
   min-height: 100vh;
   background: var(--gradient);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.showtext{
+  display: block;
+  margin-left: 5%;
+  color: black;
+  opacity: 80%;
+}
+.showtext h2{
+  font-size: 30px;
+}
+.showtext h4{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 20px;
+  width: 70%;
+}
+.showtext p{
+  font-size: 16px;
+}
+.showtext #headd{
+  margin-left: 10px;
+}
+.showtext b{
+  margin-left: 20px;
 }
 
 #drop-area {

@@ -69,11 +69,13 @@ def index_move():
 
 @app.route('/pest_predict')
 def pest_predict():
-    return render_template('pest_predict.html')
+    city = request.args.get('city')
+    return render_template('pest_predict.html',city=city)
 
 @app.route('/weed_predict')
 def weed_predict():
-    return render_template('weed_predict.html')
+    city = request.args.get('city')
+    return render_template('weed_predict.html',city=city)
 
 # page movement end
 

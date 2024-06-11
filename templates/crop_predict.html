@@ -86,9 +86,10 @@
 
           <!-- Page movements -->
           <script>
+            var cityValue=""
             window.onload = function() {
                 const urlParams = new URLSearchParams(window.location.search);
-                const cityValue = urlParams.get('city');
+                cityValue = urlParams.get('city');
 
             // document.getElementById('city').innerText =cityValue;
             fetchCityState(cityValue);
@@ -96,7 +97,7 @@
 
             };
             function movehome(){
-                window.location.href = `/index?city=${encodeURIComponent(city)}`;
+                window.location.href = `/index?city=${encodeURIComponent(cityValue)}`;
             }
             function movepest() {
                 window.location.href = "/pest_predict";
