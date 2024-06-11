@@ -34,13 +34,34 @@
             </div>
           </div>
           <div class="right">
-            <h3>{{ weed_name }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-            <!-- <h5>Color-Rose Gold</h5> -->
             
-            <button>Read More</button>
+            {% if new_weed %}
+            <h3><strong>Common Name:</strong> {{ new_weed.Cname }}</h3>
+            <p><strong>Description:</strong> {{ new_weed.Description }}</p>
+            <p><strong>Control Methods p&c:</strong> {{ new_weed.prevention }}</p>
+            <p><strong>Control Methods chemailxa:</strong> {{ new_weed.chemical }}</p>
+            <p><strong>Control Methods (Cultural Practices):</strong> {{ new_weed.cultural }}</p>
+            {% else %}
+            <p>Not in dataset</p>
+            {% endif %}
+
+          <button>Read More</button>
           </div>
         </div>
-      </section>
+      </section>  
+      <!-- <h1>Weed Classification Result</h1>
+  <table>
+    <tr>
+      <th>Weed Name</th>
+      <th>Confidence</th>
+    </tr>
+    {% for weed_name, confidence in zipped_data %}
+    <tr>
+      <td>{{ weed_name }}</td>
+      <td>{{ confidence }}</td>
+    </tr>
+    {% endfor %}
+
+  </table>     -->
 </body>
 </html>
