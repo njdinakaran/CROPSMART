@@ -36,7 +36,17 @@
           </header>
 
           <div class="hero">
-            <form class="form-horizontal" action="/pestsubmit" method="post" enctype="multipart/form-data" id="drop-area">
+            <div class="showtext">
+            <h2>Pest Prediction Page</h2>
+            <h4>Welcome to the Pest Prediction Page. Here, you can upload an image of a pest to identify its details and get information on how to manage it effectively</h4>
+            <p><b id="headd">How to Use:</b><br>
+
+                <b>Upload Image:</b>  Use the form below to upload a clear image of the pest you want to identify.<br>
+                <b>Get Results:</b> Once you upload the image, our system will analyze it and provide information about the pest.
+           <br> <b>Note:</b> Make sure the image is clear and focused for accurate identification.</p>
+            </div>
+            <br>
+                <form class="form-horizontal" action="/pestsubmit" method="post" enctype="multipart/form-data" id="drop-area">
                 <label for="input-file">
                     <input type="file" name="my_image" accept="image/*" capture="camera" id="input-file" hidden>
                     <div id="img-view">
@@ -61,11 +71,13 @@
     };
     
     function movehome() {
-        window.location.href = `index.html?city=${encodeURIComponent(city)}`;
+        window.location.href = `index`;
     }
     
     function movecrop() {
-        window.location.href = `crop_predict.html?city=${encodeURIComponent(city)}`;
+        const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
     }
     
     function moveweed() {

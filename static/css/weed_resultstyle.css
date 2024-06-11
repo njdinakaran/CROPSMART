@@ -15,7 +15,7 @@
 
 body {    
     width: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -228,6 +228,7 @@ h5 {
 }
 
 button {
+  display: none;
   width: 100%;
   padding: 10px;
   border: none;

@@ -34,13 +34,53 @@
             </div>
           </div>
           <div class="right">
-            <h3>{{ weed_name }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-            <!-- <h5>Color-Rose Gold</h5> -->
             
-            <button>Read More</button>
+            {% if new_weed %}
+            <h3><strong>Common Name:</strong> {{ new_weed.Cname }}</h3>
+            <p><strong>Description:</strong> {{ new_weed.Description }}</p>
+            <p><strong>Control Methods p&c:</strong> {{ new_weed.prevention }}</p>
+            <p><strong>Control Methods chemailxa:</strong> {{ new_weed.chemical }}</p>
+            <p><strong>Control Methods (Cultural Practices):</strong> {{ new_weed.cultural }}</p>
+            {% else %}
+            <p>Not in dataset</p>
+            <h2>{{ final_results }}</h2>
+
+            {% endif %}
+
+          <button>Read More</button>
           </div>
         </div>
-      </section>
+      </section>  
+      <!-- <h1>Weed Classification Result</h1>
+      <h1>{{final_results}}</h1>
+      <table>
+        <thead>
+            <tr>
+                <th>Confidence Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for confidences in data%}
+            <tr>
+                <td>{{ confidences }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+      <thead>
+          <tr>
+              <th>names Score</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for weed_names in weed_list%}
+          <tr>
+              <td>{{ weed_names }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table> -->
+
 </body>
 </html>

@@ -30,17 +30,40 @@
         <div class="container flex">
           <div class="left">
             <div class="main_image">
-                <img src="{{ url_for('static', filename=img_path.split('/')[-1]) }}" alt="Uploaded Image">
+              <img src="{{ url_for('static', filename=img_path.split('/')[-1]) }}" alt="Uploaded Image">
             </div>
           </div>
           <div class="right">
-            <h3>{{pest_name}}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-            <!-- <h5>Color-Rose Gold</h5> -->
-            
+            {% if pest_det %}
+            <h3><strong>Common Name:</strong> {{ pest_det.Cname }}</h3>
+            <p><strong>Description:</strong> {{ pest_det.Description }}</p>
+            <p><strong>Control Methods p&c:</strong> {{ pest_det.Prevention }}</p>
+            <p><strong>Control Methods chemailxa:</strong> {{ pest_det.Chemical }}</p>
+            <p><strong>Control Methods (Cultural Practices):</strong> {{ pest_det.Cultural }}</p>
+            {% else %}
+            <p>Not in dataset</p>
+            <h2>{{ result }}</h2>
+
+            {% endif %}
             <button>Read More</button>
           </div>
         </div>
       </section>
+      <!-- <h2>{{ result }}</h2>
+
+      <h1>Pest Classification Result</h1>
+  <table>
+    <tr>
+      <th>Pest Name</th>
+      <th>Confidence</th>
+    </tr>
+    {% for pest_names, confidences in pest_model %}
+    <tr>
+      <td>{{ pest_names }}</td>
+      <td>{{ confidences }}</td>
+    </tr>
+    {% endfor %}
+
+  </table>     -->
 </body>
 </html>
