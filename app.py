@@ -215,7 +215,7 @@ def get_output():
     weed_names = [WEED_NAMES[i] for i in sorted_indices]  # Sort weed names using indices
     confidences = confidences[sorted_indices]  # Sort confidences using indices
 
-    zipped_data = zip(weed_names, confidences)  # Zip sorted lists
+    weed_analysis = zip(weed_names,confidences)  # Zip sorted lists
 
     # top_confidence = confidences[0]
     # if top_confidence > 0.85:
@@ -236,7 +236,11 @@ def get_output():
       "role": "user",
       "parts": [
         files[0],
-        "Is this image a weed belonging to any of the following:\nWEED_NAMES = {\n    0: \"Amaranthus spp\",\n    1: \"Chenopodium album\",\n    2: \"Cirsium arvense\",\n    3: \"Commelina benghalensis\",\n    4: \"Convolvulus arvensis\",\n    5: \"Cyperus rotundus\",\n    6: \"Dactyloctenium aegyptium\",\n    7: \"Echinochloa crus-galli\",\n    8: \"Parthenium hysterophorus\",\n    9: \"Phalaris minor\"\n}. \nif so only say the name",
+        "**Can you identify the weed in this image?**\n"
+                        "If it's not a weed, please indicate that as well. \n"
+                        "Here are some possible weed names for reference (but the image might not be a weed):\n"
+                        "{}\n".format(", ".join(WEED_NAMES.values()))
+        # "Is this image a weed belonging to any of the following:\nWEED_NAMES = {\n    0: \"Amaranthus spp\",\n    1: \"Chenopodium album\",\n    2: \"Cirsium arvense\",\n    3: \"Commelina benghalensis\",\n    4: \"Convolvulus arvensis\",\n    5: \"Cyperus rotundus\",\n    6: \"Dactyloctenium aegyptium\",\n    7: \"Echinochloa crus-galli\",\n    8: \"Parthenium hysterophorus\",\n    9: \"Phalaris minor\"\n}. \nif so only say the name",
       ],
     },
     {
@@ -247,8 +251,13 @@ def get_output():
     },
   ]
             )
-            confidence_message = "\n".join([f"{weed_names}: {confidences:.2f}" for weed_names, confidences in zipped_data])
-            message = f"Is this image a weed belonging to any of the following:\n{str(WEED_NAMES)}\nif so only say the name. Here are the confidence scores from another model:\n{confidence_message}"
+            confidence_message = "\n".join([f"{weed_names}: {confidences:.2f}" for weed_names, confidences in weed_analysis])
+            message = (
+            "First check whther the uploaded image is a weed or not, if it is not a weed then responde with it is not a weed Please upload correct image,If it's a weed then check whether it is from my dataset and use my model confidence rates to correctly identify the weed name, if it is present in my dataset then only say the exact name of the weed. **Here are the confidence scores from my initial model:**\n"
+            "{}\n"
+            "**Note:** There's a chance the image might not be a weed at all or the model might have predicted wrongly.\n".format(confidence_message)
+        ) 
+                # f"Is this image a weed belonging to any of the following:\n{str(WEED_NAMES)}\nif so only say the name. Here are the confidence scores from another model:\n{confidence_message}. Note there might be chances that the image is not a weed"
 
             response = chat_session.send_message(message)#"Is this image a weed belonging to any of the following:\n" + str(WEED_NAMES) + "\nif so only say the name"
             gemini_result = response.text
@@ -257,8 +266,7 @@ def get_output():
             
     correct_weed_data = weed_data.get(gemini_result.strip())
 
-    return render_template("weed_result.html", data=confidences, 
-                           weed_name=correct_weed_data, img_path=img_path, zipped_data=zipped_data,final_results=gemini_result,new_weed = correct_weed_data)
+    return render_template("weed_result.html", data=confidences, weed_name=correct_weed_data, img_path=img_path,final_results=gemini_result,new_weed = correct_weed_data,weed_list = weed_names)
 
 
 
@@ -444,40 +452,52 @@ def get_prediction():
     sorted_indices = np.argsort(confidences)[::-1]  # Get indices for descending sort
     pest_names = [PEST_NAMES[i] for i in sorted_indices]  # Sort weed names using indices
     confidences = confidences[sorted_indices]  # Sort confidences using indices
-    zipped_data = zip(pest_names, confidences)  # Zip sorted lists
+    pest_model = zip(pest_names, confidences)  # Zip sorted lists
     # gemini 
     try:
-            model = genai.GenerativeModel(
+            pmodel = genai.GenerativeModel(
             model_name="gemini-1.5-pro",
             generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
             )
             files = [upload_to_gemini(img_path)]
-            chat_session = model.start_chat(
+            chat_session = pmodel.start_chat(
             history=[
     {
       "role": "user",
       "parts": [
         files[0],
-        "Is this image a pest belonging to any of the following:\nPEST_NAMES = {\n    0: \"Anoplophora chinensis\",\n    1: \"Apriona germari hope\",\n    2: \"Drosicha contrahens male\",\n    3: \"Erthesina fullo\",\n    4: \"Hyphantria cunea\",\n    5: \"Latoia consocia Walker\",\n    6: \"Psilogramma menephron\",\n    7: \"Spilarctia subcarnea Walker\",\n    8: \"ants\",\n    9: \"beetle\",\n    10: \"caterpillar\",\n    11: \"earwig\",\n    12: \"grasshopper\",\n    13: \"slug\",\n    14: \"weevil\"\n}\nif so only say the name\",\n\n",
+        "**Can you identify the pest in this image?**\n"
+                        "If it's not a pest, please indicate that as well. \n"
+                        "Here are some possible pest names for reference (but the image might not be a pest):\n"
+                        "{}\n".format(", ".join(PEST_NAMES.values()))
+        # "Is this image a pest belonging to any of the following:\nPEST_NAMES = {\n    0: \"Anoplophora chinensis\",\n    1: \"Apriona germari hope\",\n    2: \"Drosicha contrahens male\",\n    3: \"Erthesina fullo\",\n    4: \"Hyphantria cunea\",\n    5: \"Latoia consocia Walker\",\n    6: \"Psilogramma menephron\",\n    7: \"Spilarctia subcarnea Walker\",\n    8: \"ants\",\n    9: \"beetle\",\n    10: \"caterpillar\",\n    11: \"earwig\",\n    12: \"grasshopper\",\n    13: \"slug\",\n    14: \"weevil\"\n}\nif so only say the name\",\n\n",
       ],
     },
     {
       "role": "model",
       "parts": [
-        "Amaranthus spp \n",
+        "ants \n",
       ],
     },
   ]
             )
-            response = chat_session.send_message("predict this pest ")#Is this image a pest belonging to any of the following:\n" + str(PEST_NAMES) + "\nif so only say the name
+            confidence_message = "\n".join([f"{pest_names}: {confidences:.2f}" for pest_names, confidences in pest_model])
+            messagepest = (
+            "first check whether the uploaded image is a pest or not, If it is not a pest then respond `The image is not a pest, Please Upload correct image`, If it is a pest then identify whther the pest belongs to my dataset, if it is present use myown model confidence score to correctly identify the pest name and respond only the pest name, If is a pest and not present in my dataset respond with `The pest is not avaliable in dataset please upload someother pest`**Here are the confidence scores from my initial model:**\n"
+            "{}\n"
+            "**Note:** There's a chance the image might not be a pest at all or the model might have predicted wrongly.\n".format(confidence_message)
+            ) 
+            # message = f"Is this image a pest belonging to any of the following:\n{str(PEST_NAMES)}\nif so only say the name. Here are the confidence scores from another model:\n{confidence_message}"
+
+            response = chat_session.send_message(messagepest)#Is this image a pest belonging to any of the following:\n" + str(PEST_NAMES) + "\nif so only say the name
             gemini_result = response.text
     except Exception as e:
-             gemini_result="Error in gemini"    #PEST_NAMES[0]
+             gemini_result=pest_names[0] 
 
     correct_pest_data = pest_data.get(gemini_result.strip())
-    return render_template("pest_result.html",pest_det=correct_pest_data, data=pest_names[0],zipped_data=zipped_data,img_path=img_path,result =gemini_result)
+    return render_template("pest_result.html",pest_det=correct_pest_data, data=pest_names[0],pest_model=pest_model,img_path=img_path,result =gemini_result)
 
 # designing works starts here
 crop_descriptions = {

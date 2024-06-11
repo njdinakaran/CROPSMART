@@ -43,6 +43,8 @@
             <p><strong>Control Methods (Cultural Practices):</strong> {{ new_weed.cultural }}</p>
             {% else %}
             <p>Not in dataset</p>
+            <h2>{{ final_results }}</h2>
+
             {% endif %}
 
           <button>Read More</button>
@@ -50,18 +52,35 @@
         </div>
       </section>  
       <!-- <h1>Weed Classification Result</h1>
-  <table>
-    <tr>
-      <th>Weed Name</th>
-      <th>Confidence</th>
-    </tr>
-    {% for weed_name, confidence in zipped_data %}
-    <tr>
-      <td>{{ weed_name }}</td>
-      <td>{{ confidence }}</td>
-    </tr>
-    {% endfor %}
+      <h1>{{final_results}}</h1>
+      <table>
+        <thead>
+            <tr>
+                <th>Confidence Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for confidences in data%}
+            <tr>
+                <td>{{ confidences }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table>
+      <thead>
+          <tr>
+              <th>names Score</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for weed_names in weed_list%}
+          <tr>
+              <td>{{ weed_names }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table> -->
 
-  </table>     -->
 </body>
 </html>
