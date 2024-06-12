@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+:root {
+  --gradient: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--gradient);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.3rem 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+
+  &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .1);
+      backdrop-filter: blur(50px);
+      z-index: -1;
+  }
+
+  &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+      transition: .5s;
+  }
+
+  &:hover::after {
+      left: 100%;
+  }
+}
+
+.logo {
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+  
+.navbar a {
+  position: relative;
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 2.5rem;
+}
+
+#check {
+  display: none;
+}
+  
+.icons {
+  position: absolute;
+  right: 5%;
+  font-size: 2.8rem;
+  color: #fff;
+  cursor: pointer;
+  display: none;
+}
+  
+@media (min-width: 769px) {
+  .navbar a::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: .3s;
+  }
+  
+  .navbar a:hover::before {
+      width: 100%;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+      padding: 1.3rem 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  .icons {
+      display: inline-flex;
+  }
+
+  #check:checked~.icons #menu-icon {
+      display: none;
+  }
+
+  .icons #close-icon {
+      display: none;
+  }
+
+  #check:checked~.icons #close-icon {
+      display: block;
+  }
+
+  .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: rgba(0, 0, 0, .1);
+      backdrop-filter: blur(50px);
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+      overflow: hidden;
+      transition: .3s ease;
+  }
+      
+  #check:checked~.navbar {
+      height: 17.7rem;
+  }
+
+  .navbar a {
+      display: block;
+      font-size: 1.1rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      transform: translateY(-50px);
+      opacity: 0;
+      transition: .3s ease;
+  }
+
+  #check:checked~.navbar a {
+      transform: translateY(0);
+      opacity: 1;
+      transition-delay: calc(.15s * var(--i));
+  }
+}
+  
+.container {
+  max-width: 90%;
+  margin: auto;
+  height: 75vh;
+  margin-top: 5.5%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
+}
+    
+.left, .right {
+    width: 50%;
+    padding: 30px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+    
+.flex1 {
+  display: flex;
+}
+
+.main_image {
+  width: auto;
+  height: 100%;
+  border-radius: 20px;
+  
+}
+
+img {
+    background-position: cover;
+    background-size: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+  
+.right {
+  padding: 50px;
+}
+
+h3 {
+  color: #877daf;
+  margin: 20px 0 20px 0;
+  font-size: 25px;
+}
+
+h5, p {
+  color: #837D7C;
+}
+
+p {
+  margin: 20px 0 50px 0;
+  line-height: 25px;
+}
+    
+h5 {
+  font-size: 15px;
+}
+
+button {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: var(--gradient);
+  margin-top: 20%;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 14.5px;
+}
+    
+@media only screen and (max-width:768px) {
+  .container {
+    max-width: 90%;
+    margin: auto;
+    height: auto;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width:511px) {
+  .container {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .left, .right {
+    padding: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

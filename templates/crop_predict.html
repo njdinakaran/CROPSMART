@@ -1,47 +1,78 @@
-<html>
-    <head>
-        <title>
-            CropSmart - Crop prediction
-        </title>
-        <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CropSmart - Crop Prediction
+    </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/crop_predictstyle.css') }}">
 
-
-    <!-- <link rel="stylesheet" type="text/css" href="css/crop_predictstyle.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  </head>
+  
+  <body>
+    <header class="header">
+      <a href="#" class="logo">CropSmart</a>
 
-    </head>
+      <input type="checkbox" id="check">
+      <label for="check" class="icons">
+          <i class="bx bx-menu" id="menu-icon"></i>
+          <i class="bx bx-x" id="close-icon"></i>
+      </label>
 
-    <body>
-        <header>
-            <a href="#" class="logo">CropSmart</a>
-        
-            <ul class="navlist">
-                <li><a href="#" class="home" onclick="movehome()">Home</a></li>
-                <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
-                <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
-            </ul>
-        
-            <div class="bx bx-menu" id="menu-icon"></div>
-          </header>
+      <nav class="navbar">
+          <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
+          <a href="#" class="home" style="--i:1" onclick="movepest()">Pest Identification</a>
+          <a href="#" class="home" style="--i:2" onclick="moveweed()">Weed Identification</a>
+      </nav>
+    </header>
+    
+    <section class="container flex">
+      <div class="new-container">
+        <div class="left fade">
+          <img id="crop-image" src="static/img/banana.jpg" alt="Image not avaliable" src="" class="img-side" alt="">
+        </div>
+        <div class="right">
+          <div class="card-content">
+            <h2 id="crop-title">Crop Name</h2>
+            <p id="crop-description">Crop Description</p>
+        </div>
+      </div>
+      <a class="prev" id="pbutton">&#10094;</a>
+      <a class="next" id="nbutton">&#10095;</a>
+      </div>
 
-                   
-          <p id="season"></p>
+      <div class="form-container">
+        <span>Enter the N, P, K values to find the suitable Crop</span>
+        <form method="post" , action="{{url_for('home')}}">
 
+            <input type="number" id="nitrogen" name="nitrogen" min="0" step="any" placeholder="N (Nitrogen)" required>
 
-                  
+            <input type="number" id="phosphorus" name="phosphorus" min="0" step="any" placeholder="P (Phosphorus)" required>
 
-          <main>
+            <input type="number" id="potassium" name="potassium" min="0" step="any" placeholder="K (Potassium)" required>
 
+            <input type="number" id="temperature" name="temperature" min="-50" max="50" step="any" placeholder="Temperature (°C)" required>
+
+            <input type="number" id="humidity" name="humidity" min="0" max="100" step="any" placeholder="Humidity (%)" required>
+
+            <input type="number" id="ph" name="ph" min="0" max="14" step="any" placeholder="pH" required>
+
+            <input type="number" id="rainfall" name="rainfall" min="0" step="any" placeholder="Rainfall (mm)" required>
+            
+            <button class="sub-btn" type="submit">Predict</button>
+      </form>
+    </div>
+    </section>
+    <!-- <main>
         <div class="navigation">
             <i class="fa-solid fa-caret-left fa-3x" id="pbutton"></i>
             <div class="card-container">
@@ -55,51 +86,8 @@
             </div>
             <i class="fa-solid fa-caret-right fa-3x" id="nbutton"></i>
         </div>
-          </main>
-
-            <form method="post" , action="{{url_for('home')}}">
-              <div class="input-group">
-                <input type="number" id="nitrogen" name="nitrogen" min="0" step="any" required>
-                <label for="nitrogen">N (Nitrogen):</label>
-              </div>
-          
-              <div class="input-group">
-                <input type="number" id="phosphorus" name="phosphorus" min="0" step="any" required>
-                <label for="phosphorus">P (Phosphorus):</label>
-              </div>
-
-              <div class="input-group">
-                <input type="number" id="potassium" name="potassium" min="0" step="any" required>
-                <label for="potassium">K (Potassium):</label>
-              </div>
-          
-              <div class="input-group">
-                <input type="number" id="temperature" name="temperature" min="-50" max="50" step="any" required>
-                <label for="temperature">Temperature (°C):</label>
-              </div>
-          
-              <div class="input-group">
-                <input type="number" id="humidity" name="humidity" min="0" max="100" step="any" required>
-                <label for="humidity">Humidity (%):</label>
-              </div>
-
-              <div class="input-group">
-                <input type="text" required>
-                <label for="">Username</label>
-            </div>
-          
-              <div class="input-group">
-                <input type="number" id="ph" name="ph" min="0" max="14" step="any" required>
-                <label for="ph">pH:</label>
-              </div>
-
-              <div class="input-group">
-                <input type="number" id="rainfall" name="rainfall" min="0" step="any" required>
-                <label for="rainfall">Rainfall (mm):</label>
-              </div>
-          
-              <button type="submit">Predict</button>
-          </form>        
+       </main>  -->
+            
         </body>
 
 

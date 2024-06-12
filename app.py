@@ -82,6 +82,31 @@ def weed_predict():
 #crop prediction model 
 model = pickle.load(open('crop.pkl', 'rb'))
 
+crop_data = {
+    0: {"name": "Rice", "description": "Rice is a staple food for more than half of the world's population.", "image": "rice.jpg"},
+    1: {"name": "Maize", "description": "Maize is a cereal grain known as corn, widely grown for food.", "image": "maize.jpeg"},
+    2: {"name": "Chickpea", "description": "Chickpeas are a great source of protein and fiber.", "image": "chickpea.jpg"},
+    3: {"name": "Kidney Beans", "description": "Kidney beans are a popular legume with a high nutritional value.", "image": "kidneybeans.jpg"},
+    4: {"name": "Pigeon Peas", "description": "Pigeon peas are important in many tropical and subtropical areas.", "image": "pigeonpeas.png"},
+    5: {"name": "Moth Beans", "description": "Moth beans are drought-resistant and suitable for arid regions.", "image": "mothbean.png"},
+    6: {"name": "Mung Bean", "description": "Mung beans are widely used in Asian cuisines.", "image": "mungbeans.png"},
+    7: {"name": "Black Gram", "description": "Black gram is a highly prized pulse in South Asia.", "image": "blackgram.png"},
+    8: {"name": "Lentil", "description": "Lentils are known for their lens-shaped seeds.", "image": "lentil.png"},
+    9: {"name": "Pomegranate", "description": "Pomegranates are rich in antioxidants and nutrients.", "image": "pomegranate.png"},
+    10: {"name": "Banana", "description": "Bananas are a tropical fruit rich in potassium.", "image": "banana.jpg"},
+    11: {"name": "Mango", "description": "Mangoes are known as the king of fruits.", "image": "mango.png"},
+    12: {"name": "Grapes", "description": "Grapes are used to make wine and are eaten fresh.", "image": "grapes.png"},
+    13: {"name": "Watermelon", "description": "Watermelons are refreshing fruits with high water content.", "image": "watermelon.png"},
+    14: {"name": "Muskmelon", "description": "Muskmelons are sweet, aromatic fruits.", "image": "muskmelon.png"},
+    15: {"name": "Orange", "description": "Oranges are a citrus fruit rich in vitamin C.", "image": "orange.png"},
+    16: {"name": "Papaya", "description": "Papayas are tropical fruits with numerous health benefits.", "image": "papaya.png"},
+    17: {"name": "Coconut", "description": "Coconuts are used for their water, milk, oil, and meat.", "image": "coconut.png"},
+    18: {"name": "Cotton", "description": "Cotton is a soft, fluffy staple fiber used in textiles.", "image": "cotton.png"},
+    19: {"name": "Jute", "description": "Jute is a long, soft, shiny vegetable fiber used to make burlap.", "image": "jute.png"},
+    20: {"name": "Coffee", "description": "Coffee beans are used to make one of the most popular beverages.", "image": "coffee.png"},
+    21: {"name": "Groundnuts", "description": "Groundnuts are also known as peanuts.", "image": "groundnuts.png"}
+}
+
 @app.route('/predict', methods=['POST'])
 def home():
     data1 = request.form['nitrogen']
@@ -94,14 +119,17 @@ def home():
     
     # Define feature names
     feature_names = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
-# Create NumPy array with feature names
+    # Create NumPy array with feature names
     arr = np.array([[data1, data2, data3, data4, data5, data6, data7]])
 
-# Set feature names
+    # Set feature names
     arr = pd.DataFrame(arr, columns=feature_names)
     pred = model.predict(arr)
-    print(pred)
-    return render_template('crop_result.html', data=pred)
+#     # print(pred)
+#     # return render_template('crop_result.html', data=pred)
+    pred = int(pred[0])
+    crop_info = crop_data.get(pred, {"name": "Unknown", "description": "No information available.", "image": "unknown.jpg"})
+    return render_template('crop_result.html', crop=crop_info)
 
 
 #weed model and gemini
