@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crop Result</title>
-</head>
-<body>
-    <h1>Crop Prediction Result</h1>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/crop_resultstyle.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="#" class="logo">CropSmart</a>
+
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <i class="bx bx-x" id="close-icon"></i>
+      </label>
+
+      <nav class="navbar">
+        <a href="#" class="home" style="--i: 0" onclick="movehome()">Home</a>
+        <a href="#" class="home" style="--i: 1" onclick="movepest()"
+          >Pest Identification</a
+        >
+        <a href="#" class="home" style="--i: 2" onclick="moveweed()"
+          >Weed Identification</a
+        >
+      </nav>
+    </header>
+
+    <section>
+      <div class="container flex">
+        <div class="left">
+          <div class="main_image">
+            <img
+              src="{{ url_for('static', filename='img/' ~ crop.image) }}"
+              alt="{{ crop.name }}"
+            />
+          </div>
+        </div>
+        <div class="right">
+          <h1>{{ crop.name }}</h1>
+          <p>{{ crop.description }}</p>
+          <button>Read More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- <h1>Crop Prediction Result</h1>
     the result is {{data}}
 
     {% if data == 0 %}
@@ -55,7 +103,6 @@
         <p>The predicted crop is: Groundnuts</p>
     {% else %}
         <p>The predicted crop is unknown</p>
-    {% endif %}
-
-</body>
+    {% endif %} -->
+  </body>
 </html>
