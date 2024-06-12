@@ -55,6 +55,7 @@
     </header>
 
     <section class="container flex">
+      <h2>Explore top crops in your region!</h2>
       <div class="new-container">
         <div class="left fade">
           <img
@@ -68,8 +69,9 @@
         </div>
         <div class="right">
           <div class="card-content">
-            <h2 id="crop-title">Crop Name</h2>
+            <h1 id="crop-title">Crop Name</h1>
             <p id="crop-description">Crop Description</p>
+            <button onclick="getinfo()">Get More Details</button>
           </div>
         </div>
         <a class="prev" id="pbutton">&#10094;</a>
@@ -77,7 +79,7 @@
       </div>
 
       <div class="form-container">
-        <span>Enter the N, P, K values to find the suitable Crop</span>
+        <span>Uncover the Best Crop for You: Input Soil Nutrient Information</span>
         <form method="post" , action="{{url_for('home')}}">
           <input
             type="number"
@@ -192,6 +194,12 @@
 
     function moveweed() {
       window.location.href = "/weed_predict";
+    }
+    function getinfo(){
+      name = document.getElementById("crop-title").innerText;
+      const encodedcropname = encodeURIComponent(name);
+      console.log(name)
+      window.location.href = "/crop_move?crop=" + encodedcropname;
     }
   </script>
 

@@ -178,6 +178,25 @@ body {
 }
 
 /* New container */
+.card-content h1{
+  color: white;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+.card-content button{
+  width: 250px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: var(--gradient);
+  color: #040404;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 16.5px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 25%;
+}
 
 .container {
   max-width: 90%;
@@ -189,6 +208,11 @@ body {
   /* background: white; */
   border-radius: 20px;
   /* box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3); */
+}
+.container h2{
+  color: black;
+  padding-left: 20px;
+  margin-bottom: 10px;
 }
 
 .new-container,
@@ -286,7 +310,7 @@ input {
   border-radius: 5px; */
 
   position: relative;
-  width: 100%;
+  width: 50%;
   border: none;
   border-radius: 25px;
   padding: 10px;
@@ -333,7 +357,7 @@ span {
 
 .sub-btn {
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   outline: none;
   border: none;
   background-image: var(--gradient);

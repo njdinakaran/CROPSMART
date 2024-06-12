@@ -81,30 +81,186 @@ def weed_predict():
 
 #crop prediction model 
 model = pickle.load(open('crop.pkl', 'rb'))
+CROP_NAMES = {
+    0: 'rice',
+    1: 'maize',
+    2: 'chickpea',
+    3: 'kidneybeans',
+    4: 'pigeonpeas',
+    5: 'mothbeans',
+    6: 'mungbean',
+    7: 'blackgram',
+    8: 'lentil',
+    9: 'pomegranate',
+    10: 'banana',
+    11: 'mango',
+    12: 'grapes',
+    13: 'watermelon',
+    14: 'muskmelon',
+    15: 'orange',
+    16: 'papaya',
+    17: 'coconut',
+    18: 'cotton',
+    19: 'jute',
+    20: 'coffee',
+    21: 'groundnuts'
+}
 
 crop_data = {
-    0: {"name": "Rice", "description": "Rice is a staple food for more than half of the world's population.", "image": "rice.jpg"},
-    1: {"name": "Maize", "description": "Maize is a cereal grain known as corn, widely grown for food.", "image": "maize.jpeg"},
-    2: {"name": "Chickpea", "description": "Chickpeas are a great source of protein and fiber.", "image": "chickpea.jpg"},
-    3: {"name": "Kidney Beans", "description": "Kidney beans are a popular legume with a high nutritional value.", "image": "kidneybeans.jpg"},
-    4: {"name": "Pigeon Peas", "description": "Pigeon peas are important in many tropical and subtropical areas.", "image": "pigeonpeas.png"},
-    5: {"name": "Moth Beans", "description": "Moth beans are drought-resistant and suitable for arid regions.", "image": "mothbean.png"},
-    6: {"name": "Mung Bean", "description": "Mung beans are widely used in Asian cuisines.", "image": "mungbeans.png"},
-    7: {"name": "Black Gram", "description": "Black gram is a highly prized pulse in South Asia.", "image": "blackgram.png"},
-    8: {"name": "Lentil", "description": "Lentils are known for their lens-shaped seeds.", "image": "lentil.png"},
-    9: {"name": "Pomegranate", "description": "Pomegranates are rich in antioxidants and nutrients.", "image": "pomegranate.png"},
-    10: {"name": "Banana", "description": "Bananas are a tropical fruit rich in potassium.", "image": "banana.jpg"},
-    11: {"name": "Mango", "description": "Mangoes are known as the king of fruits.", "image": "mango.png"},
-    12: {"name": "Grapes", "description": "Grapes are used to make wine and are eaten fresh.", "image": "grapes.png"},
-    13: {"name": "Watermelon", "description": "Watermelons are refreshing fruits with high water content.", "image": "watermelon.png"},
-    14: {"name": "Muskmelon", "description": "Muskmelons are sweet, aromatic fruits.", "image": "muskmelon.png"},
-    15: {"name": "Orange", "description": "Oranges are a citrus fruit rich in vitamin C.", "image": "orange.png"},
-    16: {"name": "Papaya", "description": "Papayas are tropical fruits with numerous health benefits.", "image": "papaya.png"},
-    17: {"name": "Coconut", "description": "Coconuts are used for their water, milk, oil, and meat.", "image": "coconut.png"},
-    18: {"name": "Cotton", "description": "Cotton is a soft, fluffy staple fiber used in textiles.", "image": "cotton.png"},
-    19: {"name": "Jute", "description": "Jute is a long, soft, shiny vegetable fiber used to make burlap.", "image": "jute.png"},
-    20: {"name": "Coffee", "description": "Coffee beans are used to make one of the most popular beverages.", "image": "coffee.png"},
-    21: {"name": "Groundnuts", "description": "Groundnuts are also known as peanuts.", "image": "groundnuts.png"}
+    "banana": {
+        "Description": "Bananas thrive in warm, humid environments, making your climate ideal for their growth. Additionally, the well-drained soil suggested by your NPK levels is optimal for banana cultivation, promoting healthy root development and nutrient uptake.",
+        "General": "Banana plants need a slightly higher amount of certain nutrients and prefer warmer temperatures and similar humidity levels to rice. They require substantial but slightly lesser rainfall compared to rice.",
+        "Greq": "Banana plants flourish in tropical or subtropical climates with consistent temperatures and high humidity. They require well-drained, fertile soil with good moisture retention. Regular watering is crucial, particularly during dry periods. The soil should be rich in organic matter, and a pH range of 6-7 is optimal for banana cultivation.",
+        "Fertilizer": "Nitrogenous fertilizers such as urea and ammonium sulfate are applied to banana plants to support vigorous growth and ensure healthy fruit production.",
+        "Imagename": "banana.jpg"
+    },
+    "blackgram": {
+        "Description": "Blackgram is well-suited to warm climates with moderate rainfall, aligning perfectly with your environmental conditions. Its ability to fix nitrogen makes it beneficial for soil health, while its tolerance to drier conditions ensures resilience during periods of reduced rainfall.",
+        "General": "Blackgram, a protein-rich pulse, has lower requirements for certain nutrients and prefers slightly warmer temperatures and similar humidity levels to rice. It requires relatively lower rainfall compared to rice.",
+        "Greq": "Blackgram prefers warm temperatures and well-drained sandy loam or clay loam soil. It can tolerate slightly acidic to neutral soil pH (6-7) and requires moderate watering. Adequate drainage is essential to prevent waterlogging, which can harm the crop.",
+        "Fertilizer": "Balanced fertilization with nitrogen, phosphorus, and potassium fertilizers enhances blackgram plant development, leading to improved yield and quality.",
+        "Imagename": "blackgram.png"
+    },
+    "chickpea": {
+        "Description": "Chickpeas, being nitrogen-fixing legumes, are particularly suited for areas with moderate rainfall. Their ability to thrive in drier conditions makes them resilient to fluctuations in precipitation, while their nitrogen-fixing ability enriches the soil, benefiting future crops.",
+        "General": "Chickpeas require a moderate amount of certain nutrients and thrive in slightly cooler temperatures and moderate humidity levels. They require moderate rainfall compared to rice.",
+        "Greq": "Chickpeas thrive in regions with cooler temperatures and well-drained sandy loam or loamy soil. They prefer slightly alkaline soil (pH 6-7) and moderate watering. Good drainage is crucial to prevent waterlogging, especially during the early stages of growth.",
+        "Fertilizer": "Chickpea plants benefit from the application of nitrogen, phosphorus, and potassium fertilizers to promote robust growth and increase yield potential.",
+        "Imagename": "chickpea.jpg"
+    },
+    "coconut": {
+        "Description": "Coconut palms thrive in warm, humid climates, making them an excellent fit for your land. Their deep root systems and tolerance to high temperatures ensure their resilience in your environmental conditions, while their moderate water needs align well with your rainfall patterns.",
+        "General": "Coconut trees need a substantial amount of certain nutrients and thrive in warmer temperatures and higher humidity levels compared to rice. They require significant rainfall.",
+        "Greq": "Coconut trees prefer tropical coastal regions with well-drained sandy or loamy soil. They require ample sunlight and high humidity levels for optimal growth. The soil should have good water retention capacity, and regular watering is necessary, particularly during dry spells. A slightly acidic to neutral soil pH (5.5-7) is ideal for coconut cultivation.",
+        "Fertilizer": "Balanced fertilization with nitrogen, phosphorus, and potassium fertilizers supports the healthy growth of coconut trees and promotes high-quality fruit production.",
+        "Imagename": "coconut.png"
+    },
+    "coffee": {
+        "Description": "Coffee plants prefer slightly acidic soil, and your specific pH level suggests an environment conducive to their growth. With the right soil conditions and adequate moisture, coffee plants can thrive in your climate, producing high-quality beans for harvest.",
+        "General": "Coffee plants require a relatively higher amount of certain nutrients and prefer specific temperature and humidity ranges similar to rice. They require substantial rainfall.",
+        "Greq": "Coffee plants thrive in subtropical or tropical regions with well-drained, acidic soil rich in organic matter. They require ample sunlight and moderate temperatures. Regular watering is essential, and the soil pH should ideally range from 6-6.5. Adequate shade and protection from strong winds are also beneficial for coffee cultivation.",
+        "Fertilizer": "Nitrogenous fertilizers like urea and phosphatic fertilizers are commonly used to fertilize coffee plants, stimulating vigorous growth and maximizing bean yield.",
+        "Imagename": "coffee.png"
+    },
+    "cotton": {
+        "Description": "Cotton thrives in warm temperatures, making your climate ideal for its cultivation. The combination of warm temperatures and the well-drained soil suggested by your data provides optimal conditions for cotton growth, promoting healthy plant development and fiber production.",
+        "General": "Cotton needs a moderate amount of certain nutrients and prefers warmer temperatures but can tolerate slightly lower humidity levels compared to rice. It requires moderate rainfall.",
+        "Greq": "Cotton plants prefer warm temperatures and well-drained sandy loam or clay loam soil. They require ample sunlight and moderate watering. The soil pH should be slightly acidic to neutral (6-7), and good drainage is crucial to prevent waterlogging, which can lead to root rot.",
+        "Fertilizer": "Cotton plants require balanced fertilization with nitrogen, phosphorus, and potassium fertilizers to support healthy growth and fiber production, ensuring optimal yield and quality.",
+        "Imagename": "cotton.png"
+    },
+    "grapes": {
+        "Description": "Grapes prefer warm temperatures and abundant sunlight, both of which are characteristic of your climate. With the right conditions, including well-drained soil and adequate sunlight, grapevines can flourish on your land, producing high-quality fruit for harvest.",
+        "General": "Grapes require a moderate to high amount of certain nutrients and can tolerate a wide range of temperatures and moderate humidity levels. They require moderate rainfall.",
+        "Greq": "Grapes thrive in temperate to subtropical climates with well-drained, deep, and fertile soil. They prefer loamy or sandy loam soil with good drainage and moderate water retention. Grapes require ample sunlight and prefer slightly acidic to neutral soil pH (6-7) for optimal growth. Proper air circulation around the vines is essential to prevent fungal diseases.",
+        "Fertilizer": "Grapes thrive with the application of nitrogen, phosphorus, and potassium fertilizers, which promote vine growth, enhance fruit quality, and increase yield potential, contributing to a successful grape harvest.",
+        "Imagename": "grapes.png"
+    },
+    "groundnuts": {
+        "Description": "Groundnuts thrive in warm temperatures and are relatively drought tolerant, making them well-suited for your climate. Additionally, their ability to fix nitrogen enriches the soil, benefiting future crops, while their moderate water needs align with your rainfall patterns, reducing irrigation demands.",
+        "General": "Groundnuts, commonly known as peanuts, are nutritious legumes grown for their edible seeds. They thrive in warm temperatures and moderate humidity, requiring balanced levels of nitrogen, phosphorus, and potassium. Ideal soil pH ranges from 6.0 to 7.0. Groundnuts are prized for their high protein content and are utilized in various culinary applications. Successful cultivation depends on receiving moderate rainfall.",
+        "Greq": "Groundnuts, also known as peanuts, flourish in warm climates with well-drained, sandy loam or loamy soil. They require soil with excellent water drainage to prevent waterlogging, which can damage the crop. Groundnuts prefer ample sunlight exposure and regular watering, especially during pod development. Optimal soil pH ranges from slightly acidic to neutral (6-7) to support their growth and ensure high-quality nut production.",
+        "Fertilizer": "Groundnut cultivation benefits from key fertilizers like urea and phosphate-based compounds, supplying vital nutrients like nitrogen, phosphorus, and potassium. These nutrients are essential for robust plant growth and improved pod formation, ensuring a bountiful harvest.",
+        "Imagename": "groundnuts.png"
+    },
+    "jute": {
+        "Description": "Jute thrives in warm and humid conditions, which align well with your temperature and humidity levels. Its moderate water needs and tolerance to varying soil conditions make it a suitable crop for your land, potentially reducing irrigation demands and promoting sustainable cultivation practices.",
+        "General": "Jute needs a substantial amount of certain nutrients and thrives in warmer temperatures and higher humidity levels. It requires significant rainfall.",
+        "Greq": "Jute plants prefer warm and humid climates with well-drained, fertile soil. They are typically cultivated in floodplains or areas with water-retentive clay soil. Jute requires abundant sunlight and regular watering, particularly during its growth phase. The soil pH should range from slightly acidic to neutral (6-7) for optimal growth and fiber quality.",
+        "Fertilizer": "Jute plants benefit from nitrogen-rich fertilizers such as urea and ammonium sulfate, promoting robust growth and fiber quality essential for jute production.",
+        "Imagename": "jute.png"
+    },
+    "kidneybeans": {
+        "Description": "Kidney beans prefer warm climates, as indicated by your temperature data. Additionally, their moderate water needs align with your rainfall patterns, reducing irrigation demands. Their ability to fix nitrogen enriches the soil, benefiting future crops, particularly if nitrogen levels are slightly low.",
+        "General": "Kidney beans have lower requirements for certain nutrients and prefer specific temperature and humidity ranges. They require moderate rainfall.",
+        "Greq": "Kidney beans thrive in warm climates with well-drained, sandy loam or loamy soil. They prefer slightly acidic to neutral soil pH (6-7) and moderate watering. Good drainage is essential to prevent waterlogging, which can lead to root diseases. Kidney beans also benefit from adequate sunlight exposure and protection from strong winds.",
+        "Fertilizer": "Balanced fertilization with nitrogen, phosphorus, and potassium fertilizers supports healthy kidney bean plant growth and enhances yield potential.",
+        "Imagename": "kidneybeans.jpg"
+    },
+    "lentil": {
+        "Description": "Lentils, like other legumes, fix nitrogen from the air and deposit it in the soil, enriching it for future crops. This nitrogen-fixing ability makes lentils beneficial for soil health, while their moderate water needs align with your rainfall patterns, reducing irrigation demands.",
+        "General": "Lentils have similar nutrient requirements to kidney beans and prefer slightly cooler temperatures and similar humidity levels. They require moderate rainfall.",
+        "Greq": "Lentils prefer cool climates with well-drained, sandy loam or loamy soil. They are tolerant of slightly acidic to neutral soil pH (6-7) and moderate watering. Lentils require good drainage to prevent waterlogging, especially during the early growth stages. They also benefit from ample sunlight exposure and protection from frost.",
+        "Fertilizer": "Lentil plants require nitrogen, phosphorus, and potassium fertilizers to promote vigorous growth and improve yield and quality.",
+        "Imagename": "lentil.png"
+    },
+    "maize": {
+        "Description": "Maize has a moderate to high demand for nutrients, and the NPK levels you provided might be favorable for its growth. Additionally, the warm temperatures and well-drained soil suggested by your data align well with maize's preference for good drainage and optimal growing conditions, promoting healthy plant development and yield.",
+        "General": "Maize needs a moderate amount of certain nutrients and thrives in specific temperature and humidity ranges similar to rice. It requires moderate rainfall.",
+        "Greq": "Maize thrives in warm climates with well-drained, fertile soil. It prefers loamy or sandy loam soil with good water retention capacity. Maize requires ample sunlight and regular watering, particularly during its growth and flowering stages. The soil pH should range from slightly acidic to neutral (5.8-7) for optimal growth and yield.",
+        "Fertilizer": "Maize cultivation benefits from nitrogenous, phosphatic, and potassic fertilizers, which enhance plant growth, grain development, and yield.",
+        "Imagename": "maize.jpeg"
+    },
+    "mango": {
+        "Description": "Mangoes thrive in warm climates with well-drained soil, both of which are characteristic of your land. The combination of warm temperatures and optimal soil conditions provides an ideal environment for mango trees to flourish, producing high-quality fruit for harvest.",
+        "General": "Mango trees require a lower amount of certain nutrients and prefer warmer temperatures and similar humidity levels to rice. They require moderate to substantial rainfall.",
+        "Greq": "Mango trees prefer tropical climates with well-drained, deep, and fertile soil. They thrive in sandy loam or loamy soil with good water drainage. Mangoes require ample sunlight exposure and regular watering, especially during flowering and fruiting periods. The soil pH should be slightly acidic to neutral (6-7) for optimal growth and fruit production.",
+        "Fertilizer": "Mango trees thrive with balanced fertilization using nitrogen, phosphorus, and potassium fertilizers, supporting healthy tree growth and high-quality fruit production.",
+        "Imagename": "mango.png"
+    },
+    "mothbeans": {
+        "Description": "Mothbeans are an ideal choice for your land due to their drought tolerance and ability to grow in a wide range of soil conditions. These characteristics make them resilient to fluctuations in rainfall and soil type, ensuring consistent yields even under variable environmental conditions.",
+        "General": "Moth beans have lower requirements for certain nutrients and prefer specific temperature and humidity ranges. They require moderate rainfall.",
+        "Greq": "Moth beans prefer warm climates with well-drained, sandy loam or loamy soil. They are tolerant of slightly acidic to neutral soil pH (6-7) and moderate watering. Moth beans require good drainage to prevent waterlogging, particularly during the early growth stages. They also benefit from ample sunlight exposure.",
+        "Fertilizer": "Mothbean plants benefit from nitrogen-rich fertilizers like urea, which promote vigorous growth and enhance yield potential.",
+        "Imagename": "mothbean.png"
+    },
+    "mungbean": {
+        "Description": "Mungbeans are an excellent choice for your land because they are legumes and thrive in warm conditions. Their ability to fix nitrogen enriches the soil, benefiting future crops, while their moderate water needs align with your rainfall patterns, potentially reducing irrigation demands and promoting sustainable cultivation practices.",
+        "General": "Mung beans have lower requirements for certain nutrients and prefer specific temperature and humidity ranges. They require moderate rainfall.",
+        "Greq": "Mung beans thrive in warm climates with well-drained, sandy loam or loamy soil. They prefer slightly acidic to neutral soil pH (6-7) and moderate watering. Good drainage is essential to prevent waterlogging, which can lead to root diseases. Mung beans also benefit from ample sunlight exposure and protection from strong winds.",
+        "Fertilizer": "Mungbean plants require balanced fertilization with nitrogen, phosphorus, and potassium fertilizers to support healthy growth and optimize yield and quality.",
+        "Imagename": "mungbeans.png"
+    },
+    "muskmelon": {
+        "Description": "Muskmelon's high water content complements moderate rainfall, potentially reducing irrigation needs. Hence, it is the most favorable plant for your land, ensuring optimal fruit development and yield under your environmental conditions.",
+        "General": "Muskmelons require a moderate amount of certain nutrients and thrive in specific temperature and humidity ranges similar to rice. They require moderate rainfall.",
+        "Greq": "Muskmelons thrive in warm climates with well-drained, fertile soil. They prefer sandy loam or loamy soil with good water drainage. Muskmelons require ample sunlight exposure and regular watering, particularly during fruit development. The soil pH should be slightly acidic to neutral (6-7) for optimal growth and fruit sweetness.",
+        "Fertilizer": "Muskmelon plants thrive with balanced fertilization using nitrogen, phosphorus, and potassium fertilizers, supporting robust vine growth and high-quality fruit production.",
+        "Imagename": "muskmelon.png"
+    },
+    "orange": {
+        "Description": "Oranges have the potential to flourish on your land due to their deep root systems and moderate water needs, which align well with your rainfall patterns. Their ability to access nutrients lower in the soil ensures consistent growth and fruit production, making them an ideal crop for your environmental conditions.",
+        "General": "Orange trees require a moderate to high amount of certain nutrients and prefer specific temperature and humidity ranges similar to rice. They require moderate rainfall.",
+        "Greq": "Orange trees prefer subtropical to tropical climates with well-drained, sandy loam or loamy soil. They thrive in full sunlight and require regular watering, particularly during fruit development. The soil pH should be slightly acidic to neutral (6-7) for optimal growth and fruit quality. Orange trees are also sensitive to frost, so protection from cold temperatures is necessary in cooler regions.",
+        "Fertilizer": "Oranges benefit from nitrogenous fertilizers like urea and ammonium sulfate, promoting healthy tree growth and enhancing fruit yield and quality.",
+        "Imagename": "orange.png"
+    },
+    "papaya": {
+        "Description": "Papaya thrives in tropical climates and doesn't require excessive water, potentially making it adaptable to your rainfall patterns. Its ability to tolerate a range of soil conditions ensures resilience in varying environmental conditions, promoting sustainable cultivation practices and consistent yields.",
+        "General": "Papaya trees require a relatively higher amount of certain nutrients and thrive in specific temperature and humidity ranges similar to rice. They require substantial rainfall.",
+        "Greq": "Papaya trees prefer tropical climates with well-drained, sandy loam or loamy soil. They thrive in full sunlight and require regular watering, particularly during fruit development. The soil pH should be slightly acidic to neutral (6-7) for optimal growth and fruit production. Papayas are sensitive to waterlogging, so good drainage is essential.",
+        "Fertilizer": "Papaya trees require balanced fertilization with nitrogen, phosphorus, and potassium fertilizers to support vigorous growth and maximize fruit production.",
+        "Imagename": "papaya.png"
+    },
+    "pigeonpeas": {
+        "Description": "Pigeonpea is well-suited for your land due to its deep root system, drought tolerance, and nitrogen-fixing ability. These characteristics enable pigeonpeas to access nutrients lower in the soil and enrich it for future crops, while their ability to thrive in warm climates ensures consistent growth and yield under your environmental conditions.",
+        "General": "Pigeonpeas have lower requirements for certain nutrients and prefer specific temperature and humidity ranges. They require moderate rainfall.",
+        "Greq": "Pigeonpeas prefer warm climates with well-drained, sandy loam or loamy soil. They are tolerant of slightly acidic to neutral soil pH (6-7) and moderate watering. Pigeonpeas require good drainage to prevent waterlogging, particularly during the early growth stages. They also benefit from ample sunlight exposure and protection from strong winds.",
+        "Fertilizer": "Pigeonpeas thrive with nitrogen-rich fertilizers like urea, which promote robust plant growth and enhance yield potential. Additionally, phosphorus and potassium fertilizers can be applied to support overall plant health and productivity.",
+        "Imagename": "pigeonpeas.png"
+    },
+    "pomegranate": {
+        "Description": "Pomegranate tolerates a range of soil conditions, making it adaptable to your land. The NPK balance and well-drained soil suggested by your data align well with pomegranate's needs, promoting healthy fruit development and yield under your environmental conditions.",
+        "General": "Pomegranate trees have lower requirements for certain nutrients and prefer warmer temperatures and moderate humidity levels. They require moderate rainfall.",
+        "Greq": "Pomegranate trees prefer warm climates with well-drained, loamy or sandy loam soil. They are tolerant of slightly alkaline to neutral soil pH (5.5-7) and moderate watering. Pomegranates require ample sunlight exposure and regular watering, particularly during fruit development. They are also drought-tolerant once established.",
+        "Fertilizer": "Pomegranate trees benefit from nitrogen, phosphorus, and potassium fertilizers, which promote healthy tree growth and enhance fruit quality and yield.",
+        "Imagename": "pomegranate.png"
+    },
+    "rice": {
+        "Description": "Rice appears well-suited for your land, thriving in warm, humid conditions with a good water supply. Paddy rice cultivation is a productive choice for your land, potentially ensuring high yields and profitability under your environmental conditions.",
+        "General": "A staple food for many, rice requires a moderate to high amount of nitrogen, phosphorus, and potassium for optimal growth. It thrives in specific temperature and humidity ranges and requires significant rainfall.",
+        "Greq": "Rice thrives in warm, humid climates with ample sunlight. It prefers well-drained loamy soil with high water retention capacity. Flooded conditions during the initial growth stage are essential, followed by periodic flooding or sufficient irrigation. The soil pH should be neutral to slightly acidic (5.5-7), and while rice can be grown at various altitudes, it prefers lower elevations.",
+        "Fertilizer": "Urea, ammonium sulfate, and muriate of potash are essential fertilizers for rice cultivation, providing nitrogen, phosphorus, and potassium for optimal growth and grain yield.",
+        "Imagename": "rice.jpg"
+    },
+    "watermelon": {
+        "Description": "Watermelon could be a good fit for your land due to warm temperatures, moderate rainfall, and well-drained soil indicated by your NPK levels. These conditions provide an optimal environment for watermelon cultivation, ensuring high-quality fruit development and yield under your environmental conditions.",
+        "General": "Watermelons require a moderate amount of certain nutrients and thrive in specific temperature and humidity ranges similar to rice. They require moderate rainfall.",
+        "Greq": "Watermelons thrive in warm climates with well-drained, fertile soil. They prefer sandy loam or loamy soil with good water drainage. Watermelons require ample sunlight exposure and regular watering, particularly during fruit development. The soil pH should be slightly acidic to neutral (6-7) for optimal growth and fruit sweetness.",
+        "Fertilizer": "Watermelon plants require balanced fertilization with nitrogen, phosphorus, and potassium fertilizers to support vigorous vine growth and maximize fruit yield and sweetness.",
+        "Imagename": "watermelon.png"
+    }
 }
 
 @app.route('/predict', methods=['POST'])
@@ -128,10 +284,22 @@ def home():
 #     # print(pred)
 #     # return render_template('crop_result.html', data=pred)
     pred = int(pred[0])
-    crop_info = crop_data.get(pred, {"name": "Unknown", "description": "No information available.", "image": "unknown.jpg"})
-    return render_template('crop_result.html', crop=crop_info)
+    crop_name = CROP_NAMES[pred]
+    mycropdata = crop_data.get(crop_name)
+    tname = "Based on your input, the recommended crop is "+crop_name.upper()
 
 
+    return render_template('crop_result.html',crop=mycropdata,cropn=tname)
+
+
+
+@app.route('/crop_move')
+def getinfo():
+    crop = request.args.get('crop')
+    crop_name = crop.lower()
+    mycropdata = crop_data.get(crop_name)
+    tname = crop_name.upper()
+    return render_template('crop_result.html',crop=mycropdata,cropn=tname)
 #weed model and gemini
 #weed model
 weedmodel = load_model('weed_model.h5')

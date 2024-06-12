@@ -172,19 +172,30 @@ body {
 .container {
   max-width: 90%;
   margin: auto;
-  height: 75vh;
+  height: 100%;
   margin-top: 5.5%;
   background: white;
   border-radius: 20px;
   box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  margin-top: 130px;
+  margin-bottom: 20px;
 }
 
+.scontainer{
+  display: flex;
+  flex-direction: row;
+}
+.right{
+  margin: auto;
+}
 .left,
 .right {
   width: 50%;
   padding: 30px;
 }
-
+/* 
 .flex {
   display: flex;
   justify-content: space-between;
@@ -192,7 +203,7 @@ body {
 
 .flex1 {
   display: flex;
-}
+} */
 
 .main_image {
   width: auto;
@@ -210,8 +221,9 @@ img {
 }
 
 .right {
-  padding: 50px;
-}
+  padding: 50px 100px 50px 50px;
+  display: flex;
+  flex-direction: column;}
 
 h3 {
   color: #877daf;
@@ -221,7 +233,7 @@ h3 {
 
 h5,
 p {
-  color: #837d7c;
+  color: #232221;
 }
 
 p {
@@ -232,20 +244,36 @@ p {
 h5 {
   font-size: 15px;
 }
+.mybutton{
+  margin: auto;
+  display: flex;
+}
 
 button {
-  display: none;
-  width: 100%;
-  padding: 10px;
+  width: 250px;
+  height: 50px;
   border: none;
   outline: none;
   background: var(--gradient);
-  margin-top: 20%;
-  color: #fff;
+  color: #040404;
   cursor: pointer;
   border-radius: 20px;
-  font-size: 14.5px;
+  font-size: 16.5px;
+  justify-content: center;
+  margin-bottom: 15px;
 }
+
+.content{
+  padding: 15px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.content p{
+  margin: 10px 0 20px 0;
+  line-height: 25px;
+}
+
 
 @media only screen and (max-width: 768px) {
   .container {
