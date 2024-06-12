@@ -1591,6 +1591,9 @@ function fetchWeather(city) {
             document.getElementById('forecast').innerHTML = forecast;
         })
         .catch(error => {
+            document.getElementById('weather').innerText="Please enter correct city name.";
+            document.getElementById('forecast').innerHTML = "Refresh the page to enter the city name again";
+            document.getElementById('city').innerText="";
             console.error('Error fetching forecast data:', error);
         });
 }
@@ -1659,8 +1662,12 @@ const regiondata = [
 
 function movecrop() {
     const cityValue = document.getElementById("city").innerText;
+    if(cityValue.length == 0){
+        alert('Please enter correct city name to proceed');
+    }else{
     const encodedCityValue = encodeURIComponent(cityValue);
     window.location.href = "/crop_predict?city=" + encodedCityValue;
+}
 }
 function movepest(){
 window.location.href = "pest_predict";
