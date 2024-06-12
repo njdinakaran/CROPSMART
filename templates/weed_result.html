@@ -27,29 +27,33 @@
       </header>
 
       <section>
-        <div class="container flex">
+        <div class="container">
+        <div class="scontainer">
           <div class="left">
             <div class="main_image">
                 <img src="{{ url_for('static', filename=img_path.split('/')[-1]) }}" alt="Uploaded Image">
             </div>
           </div>
           <div class="right">
-            
             {% if new_weed %}
             <h3><strong>Common Name:</strong> {{ new_weed.Cname }}</h3>
             <p><strong>Description:</strong> {{ new_weed.Description }}</p>
+            </div>
+            </div>
+            <div class="content">
             <p><strong>Control Methods p&c:</strong> {{ new_weed.prevention }}</p>
             <p><strong>Control Methods chemailxa:</strong> {{ new_weed.chemical }}</p>
             <p><strong>Control Methods (Cultural Practices):</strong> {{ new_weed.cultural }}</p>
+            </div>
             {% else %}
             <p>Not in dataset</p>
             <h2>{{ final_results }}</h2>
 
             {% endif %}
-
-          <button>Read More</button>
-          </div>
+            <div class="mybutton">
+          <button onclick="moveagain()">Predict New Image</button>
         </div>
+          </div>
       </section>  
       <!-- <h1>Weed Classification Result</h1>
       <h1>{{final_results}}</h1>
@@ -83,4 +87,9 @@
   </table> -->
 
 </body>
+<script>
+    function moveagain(){
+        window.location.href = `weed_predict`;
+    }
+</script>
 </html>

@@ -1726,6 +1726,43 @@ function fetchCityName(latitude, longitude) {
         });
 }
 
+//fetch weather details
+function fetchWeather(city) {
+    const apiKey = 'c31f6a98e766fa63e3fedbbf0fed011d'; // Replace with your OpenWeatherMap API key
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+    fetch(weatherUrl)
+        .then(response => response.json())
+        .then(data => {
+            const weather = `Current Weather: ${data.weather[0].description}, Temperature: ${data.main.temp}°C`;
+            document.getElementById('weather').innerText = weather;
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+        });
+
+    fetch(forecastUrl)
+        .then(response => response.json())
+        .then(data => {
+            let forecast = '4-Day Forecast:';
+            for (let i = 0; i < data.list.length; i += 8) { // 8 intervals per day
+                const date = new Date(data.list[i].dt_txt).toDateString();
+                const temp = data.list[i].main.temp;
+                const desc = data.list[i].weather[0].description;
+                forecast += `<br>${date}: ${desc}, Temperature: ${temp}°C`;
+            }
+            document.getElementById('forecast').innerHTML = forecast;
+        })
+        .catch(error => {
+            document.getElementById('weather').innerText="Please enter correct city name.";
+            document.getElementById('forecast').innerHTML = "Refresh the page to enter the city name again";
+            document.getElementById('city').innerText="";
+            console.error('Error fetching forecast data:', error);
+        });
+}
+
+window.onload = getLocation;
 document.addEventListener("DOMContentLoaded", function () {
     getLocation();
     setInterval(() => {
@@ -1821,8 +1858,12 @@ const regiondata = [
 
 function movecrop() {
     const cityValue = document.getElementById("city").innerText;
+    if(cityValue.length == 0){
+        alert('Please enter correct city name to proceed');
+    }else{
     const encodedCityValue = encodeURIComponent(cityValue);
     window.location.href = "/crop_predict?city=" + encodedCityValue;
+}
 }
 function movepest(){
 window.location.href = "pest_predict";
