@@ -77,6 +77,10 @@ def weed_predict():
     city = request.args.get('city')
     return render_template('weed_predict.html',city=city)
 
+@app.route('/aboutpage')
+def moveabout():
+     return render_template('aboutpage.html')
+
 # page movement end
 
 #crop prediction model 
@@ -332,6 +336,7 @@ weed_data = {
         "Description": "One of the most problematic weeds in India, causing severe health issues (allergies, skin irritations) in humans and animals. Reduces crop yields significantly by competing for water, nutrients, and sunlight. Spreads rapidly through wind-dispersed seeds, making control challenging.",
         "prevention": "Prevent seed dispersal by timely removal and disposal. Use manual or mechanical methods to uproot plants before flowering. Biological control agents like insects can also be introduced for long-term management.",
         "chemical": "Apply pre-emergent herbicides like atrazine or post-emergent herbicides like glyphosate. Follow label instructions carefully to minimize environmental impact.",
+        "imagename": 'weed8.jpg',
         "cultural": "Implement crop rotation, mulching, and dense planting to suppress weed growth. Regular monitoring and hand weeding can help prevent Parthenium hysterophorus infestations."
     },
     "Echinochloa crus-galli": {
@@ -339,6 +344,7 @@ weed_data = {
         "Description": "A major competitor in rice fields, aggressively competing with rice plants for essential resources like nutrients, light, and space. Reproduces rapidly by seeds, forming dense mats that can smother rice crops and hinder their growth. Difficult to control due to its ability to germinate underwater, allowing it to establish itself before rice seedlings.",
         "prevention": "Implement proper field sanitation practices to prevent weed establishment. Use stale seedbed techniques to encourage weed seed germination for easier removal. Regular cultivation and shallow tillage can disrupt weed growth.",
         "chemical": "Apply pre-emergent herbicides like pendimethalin or post-emergent herbicides like quinclorac. Herbicide application timing is crucial for effective control.",
+        "imagename": 'weed7.jpg',
         "cultural": "Optimize crop spacing and density to shade out weeds. Practice crop rotation and fallow periods to disrupt weed life cycles and reduce populations."
     },
     "Amaranthus spp": {
@@ -346,12 +352,14 @@ weed_data = {
         "Description": "Common and diverse group of weeds found in agricultural fields, including grain amaranth and pigweed. Significantly reduce crop yields by competing with crops for water, nutrients, and sunlight. Fast-growing and prolific seed producers, allowing them to quickly establish large populations. Caution: While some Amaranthus species have edible leaves, be aware that certain varieties may be toxic.",
         "prevention": "Practice crop rotation and diverse cropping systems to reduce weed pressure. Hand removal of young plants before flowering can prevent seed production. Mulching and cover cropping can suppress weed growth.",
         "chemical": "Use pre-emergent herbicides like metolachlor or post-emergent herbicides like 2,4-D. Herbicide selection should consider weed species and stage of growth.",
+        "imagename": 'weed0.jpeg',
         "cultural": "Maintain soil fertility and pH to promote crop competitiveness. Planting weed-suppressive crops as cover crops or intercrops can help manage Amaranthus spp. populations."
     },
     "Convolvulus arvensis": {
         "Cname": "Field bindweed",
         "Description": "A persistent problem in agriculture, vineyards, and orchards due to its extensive underground root system that makes eradication difficult. Competes fiercely with crops for water and nutrients, hindering their growth and productivity. Spreads both by seeds and by creeping roots, allowing it to quickly establish large infestations.",
         "prevention": "Implement deep tillage to bury weed seeds and disrupt root systems. Prevent seed spread by controlling mature plants before flowering. Hand weeding and cultivation can help manage small infestations.",
+        "imagename": 'weed4.jpg',
         "chemical": "Apply pre-emergent herbicides like trifluralin or post-emergent herbicides like dicamba. Herbicide choice should consider weed growth stage and surrounding vegetation.",
         "cultural": "Practice crop rotation with non-host crops to break weed cycles. Utilize mulching and cover crops to suppress Convolvulus arvensis growth and reduce seed bank buildup."
     },
@@ -359,6 +367,7 @@ weed_data = {
         "Cname": "Nutgrass",
         "Description": "A perennial weed that infests agricultural fields and reduces crop yields by competing for resources. Forms tubers underground, enabling it to survive harsh conditions, reproduce asexually, and make control difficult. The extensive underground network of tubers allows nutgrass to regrow even after removal of the above-ground parts.",
         "prevention": "Minimize soil disturbance to prevent rhizome fragmentation and spread. Regularly remove and properly dispose of infested plant parts. Implement physical barriers like mulching or plastic sheeting to suppress weed emergence.",
+        "imagename": 'weed5.jpg',
         "chemical": "Apply pre-emergent herbicides like oxadiazon or post-emergent herbicides like halosulfuron-methyl. Timing is crucial for effective herbicide application to target emerging shoots.",
         "cultural": "Improve soil drainage and aeration to discourage Cyperus rotundus growth. Utilize competitive crops and proper crop spacing to reduce weed competition. Regular monitoring and manual removal can prevent weed establishment and spread."
     },
@@ -366,6 +375,7 @@ weed_data = {
         "Cname": "Lamb's quarters",
         "Description": "Widespread weed in India, posing a significant problem during the monsoon season due to its rapid growth, especially in moist conditions. Competes with crops for water, nutrients, and sunlight, impacting their growth and yield. Fast-growing and matures quickly, taking advantage of the monsoon rains to establish itself and compete with crops. Produces large quantities of seeds that can remain viable in the soil for many years, ensuring its persistence.",
         "prevention": "Remove weeds before flowering to prevent seed production. Implement mulching and cover cropping to suppress weed emergence. Regular cultivation and shallow tillage can disrupt weed growth.",
+        "imagename": 'weed1.jpg',
         "chemical": "Apply pre-emergent herbicides like pendimethalin or post-emergent herbicides like glyphosate. Follow label instructions carefully to minimize environmental impact.",
         "cultural": "Maintain soil fertility and pH to promote crop competitiveness. Planting weed-suppressive crops as cover crops or intercrops can help manage Chenopodium album populations."
     },
@@ -374,6 +384,7 @@ weed_data = {
         "Description": "A major weed in wheat fields of India, competing with wheat plants for resources and reducing yields. Winter-annual grass that germinates in the fall and matures in the spring, potentially outcompeting spring-sown wheat. Difficult to control in the early stages due to its resemblance to wheat seedlings, making identification and removal challenging.",
         "prevention": "Practice crop rotation and diverse cropping systems to reduce weed pressure. Hand removal of young plants before flowering can prevent seed production. Mulching and cover cropping can suppress weed growth.",
         "chemical": "Use pre-emergent herbicides like metolachlor or post-emergent herbicides like 2,4-D. Herbicide selection should consider weed species and stage of growth.",
+        "imagename": 'weed9.jpg',
         "cultural": "Optimize crop spacing and density to shade out weeds. Practice crop rotation and fallow periods to disrupt weed life cycles and reduce populations."
     },
     "Cirsium arvense": {
@@ -381,6 +392,7 @@ weed_data = {
         "Description": "An invasive weed that aggressively competes with crops for water and nutrients, reducing their growth and productivity. Spreads rapidly by both seeds and creeping roots, forming dense patches that crowd out crops and hinder their access to sunlight. Difficult to control due to its extensive root system that allows it to regenerate even after removal of the above-ground parts.",
         "prevention": "Implement deep tillage to bury weed seeds and disrupt root systems. Prevent seed spread by controlling mature plants before flowering. Hand weeding and cultivation can help manage small infestations.",
         "chemical": "Apply pre-emergent herbicides like trifluralin or post-emergent herbicides like dicamba. Herbicide choice should consider weed growth stage and surrounding vegetation.",
+        "imagename": 'weed2.jpg',
         "cultural": "Practice crop rotation with non-host crops to break weed cycles. Utilize mulching and cover crops to suppress Cirsium arvense growth and reduce seed bank buildup."
     },
     "Commelina benghalensis": {
@@ -388,6 +400,7 @@ weed_data = {
         "Description": "Found in various crops like rice, sugarcane, and maize, reducing yields by competing for water, nutrients, and sunlight. Low-growing, spreading weed that forms dense mats, smothering crops and hindering their growth. Prolific seed producer, allowing it to spread quickly and establish large populations in a short period.",
         "prevention": "Minimize soil disturbance to prevent rhizome fragmentation and spread. Regularly remove and properly dispose of infested plant parts. Implement physical barriers like mulching or plastic sheeting to suppress weed emergence.",
         "chemical": "Apply pre-emergent herbicides like oxadiazon or post-emergent herbicides like halosulfuron-methyl. Timing is crucial for effective herbicide application to target emerging shoots.",
+        "imagename": 'weed3.jpg',
         "cultural": "Improve soil drainage and aeration to discourage Commelina benghalensis growth. Utilize competitive crops and proper crop spacing to reduce weed competition. Regular monitoring and manual removal can prevent weed establishment and spread."
     },
     "Dactyloctenium aegyptium": {
@@ -395,6 +408,7 @@ weed_data = {
         "Description": "Widespread weed in India, particularly problematic in dryland agriculture, where it competes with crops for scarce water resources. Matures quickly and produces a large number of seeds that can stay viable in the soil for several years, ensuring its persistence even during dry periods. This allows crowfoot grass to readily establish itself and compete with crops for moisture as soon as rains arrive.",
         "prevention": "Remove weeds before flowering to prevent seed production. Implement mulching and cover cropping to suppress weed emergence. Regular cultivation and shallow tillage can disrupt weed growth.",
         "chemical": "Apply pre-emergent herbicides like pendimethalin or post-emergent herbicides like glyphosate. Follow label instructions carefully to minimize environmental impact.",
+        "imagename": 'weed6.jpg',
         "cultural": "Maintain soil fertility and pH to promote crop competitiveness. Planting weed-suppressive crops as cover crops or intercrops can help manage Dactyloctenium aegyptium populations."
     }
 }
@@ -405,8 +419,10 @@ def get_output():
     if request.method == 'POST':
         img = request.files['my_image']
 
-        img_path = "static/" + img.filename
+        img_path = "static/pics/" + img.filename
         img.save(img_path)
+        img_dir="pics"
+
         confidences = predict_label(img_path)
 
     sorted_indices = np.argsort(confidences)[::-1]  # Get indices for descending sort
@@ -464,7 +480,7 @@ def get_output():
             
     correct_weed_data = weed_data.get(gemini_result.strip())
 
-    return render_template("weed_result.html", data=confidences, weed_name=correct_weed_data, img_path=img_path,final_results=gemini_result,new_weed = correct_weed_data,weed_list = weed_names)
+    return render_template("weed_result.html", data=confidences,img_filename=img.filename, weed_name=correct_weed_data, img_dir=img_dir,img_path=img_path,final_results=gemini_result,new_weed = correct_weed_data,weed_list = weed_names)
 
 
 
@@ -486,6 +502,7 @@ pest_data = {
         "Description": "The Citrus Longhorn Beetle is an invasive pest that attacks various trees, including citrus, causing extensive damage to bark and wood. It can lead to tree decline and death if left unchecked.",
         "Prevention": "Implement strict quarantine measures to prevent pest spread. Regular monitoring and early detection are crucial. Remove and destroy infested trees promptly to prevent further spread.",
         "Chemical": "Use insecticides containing imidacloprid or fipronil to target adults and larvae. Follow label instructions carefully to minimize environmental impact.",
+        "imagename": 'pest1.jpg',
         "Cultural": "Practice good sanitation by removing and destroying infested plant debris. Utilize pheromone traps to monitor pest populations and reduce mating success."
     },
     "Apriona germari hope": {
@@ -494,6 +511,7 @@ pest_data = {
         "Description": "The Apriona Beetle is a destructive pest of fruit and ornamental trees, particularly in orchards and urban landscapes. It feeds on foliage, causing defoliation and weakening the trees.",
         "Prevention": "Monitor trees regularly for signs of beetle activity and damage. Prune and remove infested branches to reduce beetle populations. Implement cultural practices to enhance tree health and resilience.",
         "Chemical": "Apply systemic insecticides containing dinotefuran or acetamiprid to target adult beetles and larvae. Use targeted trunk injections for effective control.",
+        "imagename": 'pest2.jpg',
         "Cultural": "Promote tree vigor through proper irrigation, fertilization, and pruning practices. Utilize mulching to conserve moisture and suppress weed competition."
     },
     "Drosicha contrahens male": {
@@ -501,6 +519,7 @@ pest_data = {
         "Cname": "Mulberry Looper Male",
         "Description": "The Mulberry Looper Male is a moth species that mates with females to facilitate reproduction. It plays a role in the lifecycle of the mulberry looper pest.",
         "Prevention": "Implement monitoring programs to detect moth activity and population dynamics. Utilize pheromone traps to monitor male moth populations.",
+        "imagename": 'pest3.jpg',
         "Chemical": "Apply mating disruption techniques using synthetic pheromones to reduce male moth mating success. Use biological insecticides for targeted control.",
         "Cultural": "Promote tree health through proper pruning, watering, and fertilization. Utilize mulching and physical barriers to disrupt moth mating and reduce egg-laying."
     },
@@ -510,6 +529,7 @@ pest_data = {
         "Description": "The Brown Marmorated Stink Bug is an invasive pest that feeds on various crops and ornamental plants. It damages fruits, vegetables, and ornamentals by piercing and sucking sap.",
         "Prevention": "Implement exclusion techniques such as sealing cracks and crevices to prevent bug entry. Use pheromone traps to monitor and reduce bug populations.",
         "Chemical": "Apply insecticides containing pyrethroids or neonicotinoids to target adult bugs. Use insecticidal soaps or oils for control in organic systems.",
+        "imagename": 'pest4.jpg',
         "Cultural": "Implement proper sanitation practices to reduce overwintering sites and eliminate food sources. Utilize physical barriers and mesh netting to protect crops from infestation."
     },
     "Hyphantria cunea": {
@@ -518,6 +538,7 @@ pest_data = {
         "Description": "The Fall Webworm is a defoliating pest of deciduous trees, particularly in forests. It forms communal nests and feeds on leaves, causing extensive defoliation and tree stress.",
         "Prevention": "Implement monitoring programs to detect webworm activity and larval populations. Prune and remove infested branches to reduce webworm populations.",
         "Chemical": "Apply biological insecticides containing Bacillus thuringiensis (Bt) to target webworm larvae. Use physical removal of nests for control in small trees.",
+        "imagename": 'pest5.jpg',
         "Cultural": "Promote tree health through proper pruning, watering, and fertilization. Utilize biological control agents like parasitic wasps and predators."
     },
     "Latoia consocia Walker": {
@@ -526,6 +547,7 @@ pest_data = {
         "Description": "The Citrus Psyllid is a sap-sucking pest of citrus trees, particularly affecting new growth and young plants. It can transmit plant pathogens, causing disease and reducing crop yield.",
         "Prevention": "Implement monitoring programs to detect psyllid activity and population dynamics. Remove and destroy infested plant material to reduce psyllid populations.",
         "Chemical": "Apply insecticides containing systemic neonicotinoids to target psyllids. Utilize reflective mulches to deter psyllids from settling on citrus trees.",
+        "imagename": 'pest6.jpg',
         "Cultural": "Promote tree health through proper pruning, watering, and fertilization. Utilize biological control agents like parasitic wasps for long-term psyllid management."
     },
     "Psilogramma menephron": {
@@ -534,6 +556,7 @@ pest_data = {
         "Description": "The Psilogramma Moth is a nocturnal insect species belonging to the family Erebidae. It is characterized by its mottled appearance and is known to feed on various plant species.",
         "Prevention": "Implement monitoring programs to detect moth activity and egg-laying. Handpick and destroy moth eggs and larvae where feasible.",
         "Chemical": "Apply biological insecticides containing Bacillus thuringiensis (Bt) to target moth larvae. Use pheromone traps to monitor moth populations.",
+        "imagename": 'pest7.jpg',
         "Cultural": "Promote plant diversity to attract natural enemies of moth larvae. Implement proper sanitation practices to reduce moth populations and protect vulnerable plants."
     },
     "Spilarctia subcarnea Walker": {
@@ -542,6 +565,7 @@ pest_data = {
         "Description": "The Spilarctia Caterpillar is the larval stage of a moth species belonging to the family Erebidae. It is characterized by its fuzzy appearance and voracious appetite. The larvae feed on plant foliage, causing defoliation and weakening of plants.",
         "Prevention": "Implement monitoring programs to detect caterpillar activity and feeding damage. Handpick and destroy caterpillars where feasible.",
         "Chemical": "Apply biological insecticides containing Bacillus thuringiensis (Bt) to target caterpillars. Use insecticidal soaps or oils for control.",
+        "imagename": 'pest8.jpg',
         "Cultural": "Promote plant diversity to attract natural enemies of caterpillars. Implement proper sanitation practices to reduce caterpillar populations and protect vulnerable plants."
     },
     "ants": {
@@ -550,6 +574,7 @@ pest_data = {
         "Description": "Ants are pests in agriculture, known for farming aphids and other pests that harm crops. They create underground nests, disturbing plant roots and soil structure, leading to reduced crop yields and plant health.",
         "Prevention": "Maintain field sanitation, remove plant debris, and disrupt ant trails. Use bait stations and traps strategically around crop areas. Regularly monitor ant activity to prevent infestations.",
         "Chemical": "Apply ant-specific insecticides like bifenthrin or permethrin directly to nests and trails. Use granular baits for targeted control. Always follow label instructions to ensure safe application and minimize environmental impact.",
+        "imagename": 'pest9.jpg',
         "Cultural": "Implement crop rotation and intercropping to disrupt ant colonies. Use organic mulches and cover crops to deter ants. Encourage natural predators like birds and beneficial insects to reduce ant populations."
     },
     "beetle": {
@@ -558,6 +583,7 @@ pest_data = {
         "Description": "Beetles, belonging to the order Coleoptera, are one of the most diverse groups of insects, with over 350,000 species worldwide. They range in size from tiny, barely visible species to large, conspicuous ones. Beetles typically have hardened forewings called elytra, which cover the membranous hindwings and protect the body. They exhibit a wide range of feeding habits, with some species being herbivores, others predators, and some scavengers.",
         "Prevention": "Preventing beetle infestations in agricultural settings involves various strategies. Crop rotation is effective in breaking the life cycle of many beetle species, as it disrupts their access to preferred host plants. Additionally, physical barriers such as row covers or netting can be deployed to prevent adult beetles from laying eggs on crops. Maintaining healthy soil with proper drainage and avoiding excessive use of nitrogen-rich fertilizers can also discourage beetle populations.",
         "Chemical": "In cases where beetle populations reach damaging levels, chemical control may be necessary. Insecticides formulated with active ingredients like neem oil, pyrethrins, or spinosad can provide effective control of beetles. It's essential to apply insecticides according to label instructions and consider their potential impact on non-target organisms.",
+        "imagename": 'pest10.jpg',
         "Cultural": "Cultural practices play a crucial role in managing beetle populations sustainably. Regular scouting and monitoring of crops help detect beetle presence early, allowing for timely intervention. Maintaining proper sanitation in fields and storage areas by removing crop residues and weeds reduces beetle breeding sites. Implementing integrated pest management (IPM) strategies that combine cultural, biological, and chemical control methods can effectively mitigate beetle damage while minimizing environmental impact."
     },
     "caterpillar": {
@@ -566,6 +592,7 @@ pest_data = {
         "Description": "Caterpillars, the larval stage of butterflies and moths, are voracious feeders with cylindrical bodies and multiple pairs of legs. They undergo a series of molts as they grow, often causing extensive damage to foliage, fruits, and other plant parts. Caterpillars exhibit a wide range of colors and patterns, often blending in with their surroundings to avoid detection by predators.",
         "Prevention": "Preventing caterpillar damage in farming environments requires a multi-faceted approach. Implementing cultural practices such as crop rotation can disrupt the life cycle of caterpillars by removing their preferred host plants from the growing area. Installing physical barriers like floating row covers or mesh netting can prevent adult butterflies and moths from laying eggs on crops. Additionally, introducing natural enemies such as parasitic wasps and predatory beetles can help keep caterpillar populations in check.",
         "Chemical": "When caterpillar populations exceed tolerable levels, chemical control may be necessary. Biological insecticides containing Bacillus thuringiensis (Bt) are highly effective against many caterpillar species while posing minimal risk to beneficial insects and the environment. Insecticidal soaps and botanical insecticides derived from plants like pyrethrum or neem oil can also provide control.",
+        "imagename": 'pest11.jpg',
         "Cultural": "Cultural practices that promote plant health and resilience can help minimize caterpillar damage. Providing adequate nutrition and irrigation to crops helps them withstand feeding pressure from caterpillars. Removing plant debris and weeds reduces hiding places for caterpillars and their natural enemies. Introducing companion plants that repel or deter caterpillars, such as marigolds or chives, can further enhance pest management efforts."
     },
     "earwig": {
@@ -574,6 +601,7 @@ pest_data = {
         "Description": "Earwigs are nocturnal insects characterized by elongated bodies and pincer-like cerci at the end of their abdomens. Despite their intimidating appearance, earwigs are omnivorous scavengers, feeding on a variety of plant material, insects, and decaying organic matter. They are often found in damp, sheltered locations such as under rocks, logs, and in garden debris.",
         "Prevention": "Managing earwig populations in agricultural settings requires a combination of cultural and mechanical control methods. Implementing cultural practices such as reducing moisture levels and removing organic debris can make the environment less favorable for earwigs. Installing traps baited with materials like rolled-up newspaper or cardboard tubes filled with straw or paper can help capture and reduce earwig numbers.",
         "Chemical": "In situations where earwig populations pose a significant threat to crops, chemical control may be warranted. Insecticides containing pyrethrins or carbaryl can provide effective control when applied according to label instructions. However, it's essential to consider the potential impact of chemical treatments on non-target organisms and the environment.",
+        "imagename": 'pest12.jpg',
         "Cultural": "Cultural practices that promote a healthy growing environment can help deter earwigs from becoming problematic. Mulching with materials like gravel or diatomaceous earth creates inhospitable conditions for earwigs by reducing moisture and shelter. Pruning and thinning plants to improve airflow and reduce humidity levels can also discourage earwig infestations."
     },
     "grasshopper": {
@@ -582,6 +610,7 @@ pest_data = {
         "Description": "Grasshoppers are herbivorous insects belonging to the order Caelifera, characterized by powerful hind legs adapted for jumping. They typically feed on a wide range of plants, including grasses, cereals, and legumes, and can cause significant damage to crops during outbreaks. Grasshoppers undergo incomplete metamorphosis, with nymphs resembling miniature versions of adults.",
         "Prevention": "Preventing and managing grasshopper damage in agricultural settings requires a combination of cultural, mechanical, and biological control methods. Implementing cultural practices such as crop diversification and planting trap crops can help reduce grasshopper pressure on valuable crops. Installing physical barriers like mesh screens or row covers can prevent grasshoppers from accessing vulnerable plants.",
         "Chemical": "In cases where grasshopper populations exceed tolerable levels, chemical control may be necessary. Insecticides containing active ingredients such as malathion, permethrin, or cyfluthrin can provide effective control when applied during peak grasshopper activity. It's essential to follow label instructions carefully and consider the potential impact on non-target organisms and the environment.",
+        "imagename": 'pest13.jpg',
         "Cultural": "Cultural practices that promote ecosystem diversity and resilience can help minimize grasshopper damage over the long term. Maintaining good weed control reduces grasshopper habitat and competition for resources. Mowing vegetation around fields and removing crop residues after harvest eliminates hiding places for grasshoppers and reduces overwintering sites."
     },
     "slug":{
@@ -590,6 +619,7 @@ pest_data = {
         "Description": "Slugs are soft-bodied mollusks with a voracious appetite for young plant tissue. They thrive in moist environments and can cause significant damage to crops, especially seedlings and low-growing plants. Slugs feed by scraping away the outer layers of plant tissue, leaving behind characteristic slime trails. They are most active at night and on cloudy days when humidity levels are high.",
         "Prevention": "Managing slug populations in agricultural settings requires a combination of cultural, mechanical, and biological control methods. Implementing cultural practices such as mulching with materials that slugs dislike, such as gravel or diatomaceous earth, creates inhospitable conditions for slug activity. Installing physical barriers like copper tape or diatomaceous earth around vulnerable plants can prevent slugs from accessing them.",
         "Chemical": "In cases where slug populations exceed tolerable levels, chemical control may be necessary. Iron phosphate-based baits are effective and environmentally friendly options for controlling slugs. These baits work by attracting slugs, which then consume the bait and die. It's important to follow label instructions carefully when using slug baits and to avoid overapplication to minimize the risk of non-target impacts.",
+        "imagename": 'pest14.jpg',
         "Cultural":"Cultural practices that promote a healthy growing environment can help deter slug damage. Watering plants in the morning allows the soil surface to dry out during the day, reducing favorable conditions for slug activity. Handpicking slugs after sunset, when they are most active, can also help reduce populations."       
     },
     "weevil":{
@@ -598,6 +628,7 @@ pest_data = {
         "Description": "Weevils are small beetles with elongated snouts and chewing mouthparts. They infest stored grains, nuts, and seeds, causing contamination and loss of quality. Weevils undergo complete metamorphosis, with adults emerging from pupae laid in grains or other organic matter. Adult weevils typically feed on the exterior of grains, while larvae develop inside, consuming the nutritious inner contents. Infestations are often detected by the presence of small round exit holes in stored products and the accumulation of flour-like frass.",
         "Prevention": "Preventing weevil infestations in stored products requires meticulous sanitation and monitoring. Store grains, nuts, and seeds in airtight containers to prevent adult weevils from accessing them and laying eggs. Regularly inspect stored products for signs of weevil activity, including the presence of exit holes, frass, or adult weevils. Dispose of infested products promptly to prevent the spread of infestations to other stored goods.",
         "Chemical": "In cases where weevil infestations are detected, chemical control measures may be necessary. Treating stored grains with diatomaceous earth or silica gel can effectively kill weevils and prevent further infestations. These desiccant dusts work by absorbing the waxy outer layer of the insect's exoskeleton, leading to dehydration and death. It's essential to apply desiccant dusts evenly and thoroughly to ensure adequate coverage and efficacy against weevils.",
+        "imagename": 'pest15.jpg',
         "Cultural": "Cultural practices that promote proper storage and handling of grains, nuts, and seeds can help prevent weevil infestations. Rotate stored products frequently to prevent prolonged exposure to weevil populations and to ensure that older stocks are used first. Inspect new grain shipments for signs of weevil infestation before storage and quarantine suspect products to prevent the spread of infestations to other stored goods."      
     }
 }
@@ -643,9 +674,10 @@ PEST_NAMES = {
 def get_prediction():
     if request.method == 'POST':
         img = request.files['my_image']
-        img_path = "static/" + img.filename
+        img_path = "static/pics/" + img.filename
         img.save(img_path)
         confidences = preprocess_image(img_path)
+        img_dir="pics"
         
     sorted_indices = np.argsort(confidences)[::-1]  # Get indices for descending sort
     pest_names = [PEST_NAMES[i] for i in sorted_indices]  # Sort weed names using indices
@@ -695,7 +727,7 @@ def get_prediction():
              gemini_result=pest_names[0] 
 
     correct_pest_data = pest_data.get(gemini_result.strip())
-    return render_template("pest_result.html",pest_det=correct_pest_data, data=pest_names[0],pest_model=pest_model,img_path=img_path,result =gemini_result)
+    return render_template("pest_result.html",pest_det=correct_pest_data, img_filename=img.filename,img_dir=img_dir,data=pest_names[0],pest_model=pest_model,img_path=img_path,result =gemini_result)
 
 # designing works starts here
 crop_descriptions = {
@@ -728,6 +760,29 @@ def Display_IMG():
     IMG_LIST = os.listdir("static/img")
     IMG_LIST = ["img/" + i for i in IMG_LIST]
     return render_template("crop_predict.html", imagelist=IMG_LIST, static_url_path=app.static_url_path)
+
+
+
+@app.route('/pest_resultmove')
+def getpestinfo():
+    pest = request.args.get('pest')
+    pestdata = pest_data.get(pest)
+    result ="Error Occured"
+    img = pestdata['imagename']
+    img_dir = "img"
+    return render_template('pest_result.html',pest_det=pestdata,img_filename=img ,img_dir=img_dir,cropn=pest,result =result)
+
+
+
+@app.route('/weed_resultmove')
+def getweedinfo():
+    weed = request.args.get('weed')
+    weeddata = weed_data.get(weed)
+    result ="Error Occured"
+    img = weeddata['imagename']
+    img_dir = "img"
+    return render_template('weed_result.html',new_weed=weeddata,img_filename=img ,img_dir=img_dir,cropn=weed,final_results =result)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

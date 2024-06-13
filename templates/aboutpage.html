@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        CropSmart - Pest prediction
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutpagestyle.css') }}">
+    
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+
+    <body>
+        <header class="header">
+            <a href="#" class="logo">CropSmart</a>
+        
+            <input type="checkbox" id="check">
+            <label for="check" class="icons">
+                <i class="bx bx-menu" id="menu-icon"></i>
+                <i class="bx bx-x" id="close-icon"></i>
+            </label>
+        
+            <nav class="navbar">
+                <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
+                <a href="#" class="home" style="--i:1" onclick="movecrop()">Crop Recommendation</a>
+                <a href="#" class="home" style="--i:2" onclick="moveweed()">Weed Identification</a>
+                <a href="#" class="home" onclick="movecal()">FarmCalc</a>
+            </nav>
+          </header>
+          <section class="devcon">
+<!-- to add intro and teammembers -->
+          </section>
+
+
+          <section class="display" style="display: flex; flex-direction: column;">
+            
+            <!-- crop display -->
+          <section class="container">
+            <h2>Our Crop Dataset!</h2>
+            <div class="new-container">
+              <div class="left">
+                <img
+                  id="crop-image"
+                  src="static/img/banana.jpg"
+                  alt="Image not avaliable"
+                  src=""
+                  class="img-side"
+                  alt=""
+                />
+              </div>
+              <div class="right">
+                <div class="card-content">
+                  <h1 id="crop-title">Crop Name</h1>
+                  <p id="crop-description">Crop Description</p>
+                  <button onclick="getinfo()">Get More Details</button>
+                </div>
+              </div>
+              <a class="prev" id="pbutton">&#10094;</a>
+              <a class="next" id="nbutton">&#10095;</a>
+            </div>
+
+
+
+          </section>
+
+          <!-- Pest weed display -->
+           <section class="imageds" style="display: flex; flex-direction: row; margin: 20px;">
+            <section class="pestcontainer">
+              <h2>Pest Dataset</h2>
+              <div class="pestnew-container">
+                <div class="pestup">
+                  <img
+                    id="pest-image"
+                    alt="Image not avaliable"
+                    src="static/img/banana.jpg"
+                    class="pestimg-side"
+                    alt=""
+                  />
+                </div>
+                <div class="pestdown">
+                  <div class="pestcard-content">
+                    <p id="pestname" style="display: none;"></p>
+                    <h1 id="pest-title">Pest Name</h1>
+                    <p id="pest-description">Pest Description</p>
+                    <button onclick="getpestinfo()">Get More Details</button>
+                  </div>
+                </div>
+                <a class="pestprev" id="ppestbutton">&#10094;</a>
+                <a class="pestnext" id="npestbutton">&#10095;</a>
+              </div>
+            </section>
+
+            <!-- Weed container -->
+            <section class="weedcontainer">
+              <h2>Weed Dataset</h2>
+              <div class="weednew-container">
+                <div class="weedup">
+                  <img
+                    id="weed-image"
+                    alt="Image not avaliable"
+                    src="static/img/banana.jpg"
+                    class="weedimg-side"
+                    alt=""
+                  />
+                </div>
+                <div class="weeddown">
+                  <div class="weedcard-content">
+                    <p id="weedname" style="display: none;"></p>
+                    <h1 id="weed-title">Weed Name</h1>
+                    <p id="weed-description">Weed Description</p>
+                    <button onclick="getweedinfo()">Get More Details</button>
+                  </div>
+                </div>
+                <a class="weedprev" id="pweedbutton">&#10094;</a>
+                <a class="weednext" id="nweedbutton">&#10095;</a>
+              </div>
+            </section>
+            </section>
+
+
+
+
+           </section>
+
+
+
+
+
+</body>
+
+<script>
+    function movehome() {
+        window.location.href = `index`;
+    }
+    
+    function movecrop() {
+        const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+    }
+    function getinfo(){
+      name = document.getElementById("crop-title").innerText;
+      const encodedcropname = encodeURIComponent(name);
+      console.log(name)
+      window.location.href = "/crop_move?crop=" + encodedcropname;
+    }
+    function getweedinfo(){
+      weed = document.getElementById("weedname").innerText;
+      const encodedweedname = encodeURIComponent(weed);
+      window.location.href = "/weed_resultmove?weed=" + encodedweedname;
+
+    }
+    function getpestinfo(){
+      pest = document.getElementById("pestname").innerText;
+      console.log(pest)
+      const encodedpestname = encodeURIComponent(pest);
+      window.location.href = "/pest_resultmove?pest=" + encodedpestname;
+
+    }
+    
+    function moveweed() {
+        window.location.href = `weed_predict`;
+    }
+
+
+
+</script>
+<script src="{{ url_for('static', filename='js/aboutscript.js') }}"></script>
+
+</html>

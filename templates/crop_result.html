@@ -31,8 +31,9 @@
           >Pest Identification</a
         >
         <a href="#" class="home" style="--i: 2" onclick="moveweed()"
-          >Weed Identification</a
-        >
+          >Weed Identification</a>
+          <a href="#" class="home" onclick="movecal()">FarmCalc</a>
+        <a href="#" class="leave" onclick="moveabout()">About</a>
       </nav>
     </header>
 
@@ -67,11 +68,27 @@
     </section>
   </body>
   <script>
+    function movehome() {
+        window.location.href = `index`;
+    }
+    
+    function movecrop() {
+        const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+    }
+    
+    function moveweed() {
+        window.location.href = `weed_predict`;
+    }
     function moveagain(){
       const cityValue = "chennai"
     const encodedCityValue = encodeURIComponent(cityValue);
     window.location.href = "/crop_predict?city=" + encodedCityValue;
     
+    }
+    function moveabout(){
+      window.location.href = "/aboutpage";
     }
   </script>
 </html>

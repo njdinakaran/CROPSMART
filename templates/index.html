@@ -28,7 +28,8 @@
                 <li><a href="#" class="home" onclick="movecrop()">Crop Recommendation</a></li>
                 <li><a href="#" class="home" onclick="movepest()">Pest Identification</a></li>
                 <li><a href="#" class="home" onclick="moveweed()">Weed Identification</a></li>
-                <li><a href="#" class="leave" onclick="logout()">About</a></li>
+                <li><a href="#" class="home" onclick="movecal()">FarmCalc</a></li>
+                <li><a href="#" class="leave" onclick="moveabout()">About</a></li>
             </ul>
         
             <div class="bx bx-menu" id="menu-icon"></div>
@@ -52,6 +53,11 @@
         </div>
 
     </body>      
+    <script>
+        function moveabout(){
+            window.location.href = "/aboutpage";
+        }
+    </script>
 
     
 <script src="{{ url_for('static', filename='js/indexscript.js') }}"></script>
