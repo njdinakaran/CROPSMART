@@ -1554,7 +1554,7 @@ const cropMapping = {
     "Southern": [
         "Rice",
         "Maize",
-        "Pigeonpea",
+        "Pigeonpeas",
         "Mothbeans",
         "Mungbean",
         "Blackgram",
@@ -1584,7 +1584,7 @@ const cropMapping = {
         "Rice",
         "Maize",
         "Chickpea",
-        "Pigeonpea",
+        "Pigeonpeas",
         "Mungbean",
         "Jute"
     ],
@@ -1694,7 +1694,7 @@ const fullcropdata = [
         image: 'papaya.png'
     },
     {
-        name: 'Pigeonpea',
+        name: 'Pigeonpeas',
         description: 'Pigeonpea is well-suited for your land due to its deep root system, drought tolerance, and nitrogen-fixing ability. These characteristics enable pigeonpeas to access nutrients lower in the soil and enrich it for future crops, while their ability to thrive in warm climates ensures consistent growth and yield under your environmental conditions.',
         image: 'pigeonpeas.png'
     },

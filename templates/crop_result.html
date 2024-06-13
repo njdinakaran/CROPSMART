@@ -1,96 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crop Result</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/crop_resultstyle.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-</head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/crop_resultstyle.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <a href="#" class="logo">CropSmart</a>
-    
-        <input type="checkbox" id="check">
-        <label for="check" class="icons">
-            <i class="bx bx-menu" id="menu-icon"></i>
-            <i class="bx bx-x" id="close-icon"></i>
-        </label>
-    
-        <nav class="navbar">
-            <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
-            <a href="#" class="home" style="--i:1" onclick="movepest()">Pest Identification</a>
-            <a href="#" class="home" style="--i:2" onclick="moveweed()">Weed Identification</a>
-        </nav>
-      </header>
+      <a href="#" class="logo">CropSmart</a>
 
-      <section>
-        <div class="container flex">
-          <div class="left">
-            <div class="main_image">
-                <img src="{{ url_for('static', filename='img/' ~ crop.image) }}" alt="{{ crop.name }}">
-            </div>
-          </div>
-          <div class="right">
-            <h1>{{ crop.name }}</h1>
-            <p>{{ crop.description }}</p>
-            <button>Read More</button>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <i class="bx bx-x" id="close-icon"></i>
+      </label>
+
+      <nav class="navbar">
+        <a href="#" class="home" style="--i: 0" onclick="movehome()">Home</a>
+        <a href="#" class="home" style="--i: 1" onclick="movepest()"
+          >Pest Identification</a
+        >
+        <a href="#" class="home" style="--i: 2" onclick="moveweed()"
+          >Weed Identification</a>
+        <a href="#" class="leave" onclick="moveabout()">About</a>
+      </nav>
+    </header>
+
+    <section>
+      <div class="container">
+        <div class="scontainer">
+        <div class="left">
+          <div class="main_image">
+            <img
+              src="{{ url_for('static', filename='img/' ~ crop.Imagename) }}"
+              alt="{{ cropn }}"/>
           </div>
         </div>
-      </section>
-
-    <!-- <h1>Crop Prediction Result</h1>
-    the result is {{data}}
-
-    {% if data == 0 %}
-        <p>The predicted crop is: Rice</p>
-    {% elif data == 1 %}
-        <p>The predicted crop is: Maize</p>
-    {% elif data == 2 %}
-        <p>The predicted crop is: Chickpea</p>
-    {% elif data == 3 %}
-        <p>The predicted crop is: Kidney Beans</p>
-    {% elif data == 4 %}
-        <p>The predicted crop is: Pigeon Peas</p>
-    {% elif data == 5 %}
-        <p>The predicted crop is: Moth Beans</p>
-    {% elif data == 6 %}
-        <p>The predicted crop is: Mung Bean</p>
-    {% elif data == 7 %}
-        <p>The predicted crop is: Black Gram</p>
-    {% elif data == 8 %}
-        <p>The predicted crop is: Lentil</p>
-    {% elif data == 9 %}
-        <p>The predicted crop is: Pomegranate</p>
-    {% elif data == 10 %}
-        <p>The predicted crop is: Banana</p>
-    {% elif data == 11 %}
-        <p>The predicted crop is: Mango</p>
-    {% elif data == 12 %}
-        <p>The predicted crop is: Grapes</p>
-    {% elif data == 13 %}
-        <p>The predicted crop is: Watermelon</p>
-    {% elif data == 14 %}
-        <p>The predicted crop is: Muskmelon</p>
-    {% elif data == 15 %}
-        <p>The predicted crop is: Orange</p>
-    {% elif data == 16 %}
-        <p>The predicted crop is: Papaya</p>
-    {% elif data == 17 %}
-        <p>The predicted crop is: Coconut</p>
-    {% elif data == 18 %}
-        <p>The predicted crop is: Cotton</p>
-    {% elif data == 19 %}
-        <p>The predicted crop is: Jute</p>
-    {% elif data == 20 %}
-        <p>The predicted crop is: Coffee</p>
-    {% elif data == 21 %}
-        <p>The predicted crop is: Groundnuts</p>
-    {% else %}
-        <p>The predicted crop is unknown</p>
-    {% endif %} -->
-
-</body>
+        <div class="right">
+          <h1>{{ cropn }}</h1>
+          {% if crop %}
+          <p><strong>Description:</strong> {{ crop.Description }}</p>
+          </div>
+          </div>
+          <div class="content">
+            <p><strong>Nutrient and Climate Requirements:</strong> {{ crop.General }}</p>
+            <p><strong>Growing Conditions:</strong> {{ crop.Greq }}</p>
+            <p><strong>Fertilizer Requirements:</strong> {{ crop.Fertilizer }}</p>
+            </div>
+            {% else %}
+            <p>Error Occured, Try again Later</p>
+            {% endif %}
+            <div class="mybutton">
+          <button onclick="moveagain()">Predict Again</button>
+        </div>
+        </div>
+    </section>
+  </body>
+  <script>
+    function movehome() {
+        window.location.href = `index`;
+    }
+    
+    function movecrop() {
+        const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+    }
+    
+    function moveweed() {
+        window.location.href = `weed_predict`;
+    }
+    function moveagain(){
+      const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+    
+    }
+    function moveabout(){
+      window.location.href = "/aboutpage";
+    }
+  </script>
 </html>

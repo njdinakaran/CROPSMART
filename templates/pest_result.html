@@ -23,6 +23,7 @@
             <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
             <a href="#" class="home" style="--i:1" onclick="movecrop()">Crop Recommendation</a>
             <a href="#" class="home" style="--i:2" onclick="moveweed()">Weed Identification</a>
+            <a href="#" class="leave" onclick="moveabout()">About</a>
         </nav>
       </header>
 
@@ -31,7 +32,7 @@
           <div class="scontainer">
           <div class="left">
             <div class="main_image">
-              <img src="{{ url_for('static', filename=img_path.split('/')[-1]) }}" alt="Uploaded Image">
+              <img src="{{ url_for('static', filename=img_dir + '/' ~  img_filename)}}" alt="Uploaded Image">
             </div>
           </div>
           <div class="right">
@@ -74,8 +75,24 @@
   </table>     -->
 </body>
 <script>
+  function movehome() {
+        window.location.href = `index`;
+    }
+    
+    function movecrop() {
+        const cityValue = "chennai"
+    const encodedCityValue = encodeURIComponent(cityValue);
+    window.location.href = "/crop_predict?city=" + encodedCityValue;
+    }
+    
+    function moveweed() {
+        window.location.href = `weed_predict`;
+    }
     function moveagain(){
         window.location.href = `pest_predict`;
+    }
+    function moveabout(){
+      window.location.href = "/aboutpage";
     }
 </script>
 </html>

@@ -32,6 +32,7 @@
                 <a href="#" class="home" style="--i:0" onclick="movehome()">Home</a>
                 <a href="#" class="home" style="--i:1" onclick="movecrop()">Crop Recommendation</a>
                 <a href="#" class="home" style="--i:2" onclick="moveweed()">Weed Identification</a>
+                <a href="#" class="leave" onclick="moveabout()">About</a>
             </nav>
           </header>
 
@@ -82,6 +83,9 @@
     
     function moveweed() {
         window.location.href = `weed_predict`;
+    }
+    function moveabout(){
+        window.location.href = "/aboutpage";
     }
 
     const dropArea = document.getElementById('drop-area');
