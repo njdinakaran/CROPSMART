@@ -361,8 +361,9 @@ setInterval(() => {
 }, 10000);
 setInterval(() => {
     weedIndex = (weedIndex === weedData.length - 1) ? 0 : weedIndex + 1;
-    showPest(weedIndex);
+    showWeed(weedIndex);
 }, 10000);
+
 
 // Initial display
 showCrop(currentIndex);
