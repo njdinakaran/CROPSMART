@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap");
 
 :root {
-    --gradient: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+  --gradient: linear-gradient(135deg, #72edf2 10%, #5151e5 100%);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
   min-height: 100vh;
   background: var(--gradient);
 }
-  
+
 .header {
   position: fixed;
   top: 0;
@@ -35,30 +35,35 @@ body {
   z-index: 100;
 
   &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, .1);
-      backdrop-filter: blur(50px);
-      z-index: -1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    z-index: -1;
   }
 
   &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
-      transition: .5s;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: 0.5s;
   }
 
   &:hover::after {
-      left: 100%;
+    left: 100%;
   }
 }
 
@@ -93,75 +98,75 @@ body {
 
 @media (min-width: 769px) {
   .navbar a::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 100%;
     left: 0;
     width: 0;
     height: 2px;
     background: #fff;
-    transition: .3s;
+    transition: 0.3s;
   }
-  
+
   .navbar a:hover::before {
-      width: 100%;
+    width: 100%;
   }
 }
 
 @media (max-width: 992px) {
   .header {
-      padding: 1.3rem 5%;
+    padding: 1.3rem 5%;
   }
 }
 
 @media (max-width: 768px) {
   .icons {
-      display: inline-flex;
+    display: inline-flex;
   }
 
-  #check:checked~.icons #menu-icon {
-      display: none;
+  #check:checked ~ .icons #menu-icon {
+    display: none;
   }
 
   .icons #close-icon {
-      display: none;
+    display: none;
   }
 
-  #check:checked~.icons #close-icon {
-      display: block;
+  #check:checked ~ .icons #close-icon {
+    display: block;
   }
 
   .navbar {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      height: 0;
-      background: rgba(0, 0, 0, .1);
-      backdrop-filter: blur(50px);
-      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-      overflow: hidden;
-      transition: .3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: 0.3s ease;
   }
-      
-  #check:checked~.navbar {
-      height: 17.7rem;
+
+  #check:checked ~ .navbar {
+    height: 17.7rem;
   }
 
   .navbar a {
-      display: block;
-      font-size: 1.1rem;
-      margin: 1.5rem 0;
-      text-align: center;
-      transform: translateY(-50px);
-      opacity: 0;
-      transition: .3s ease;
+    display: block;
+    font-size: 1.1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: 0.3s ease;
   }
 
-  #check:checked~.navbar a {
-      transform: translateY(0);
-      opacity: 1;
-      transition-delay: calc(.15s * var(--i));
+  #check:checked ~ .navbar a {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: calc(0.15s * var(--i));
   }
 }
 
@@ -236,25 +241,24 @@ body {
 }
 
 button {
-    cursor: pointer;
-    width: 50%;
-    outline: none;
-    border: none;
-    background-image: var(--gradient);
-    color: #000000;
-    border-radius: 25px;
-    font-size: 14.5px;
-    padding: 10px;
-    margin-top: 15px;
-    font-weight: 700;
-    box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
-    transition: transform 200ms ease;
-  
-    &:hover {
-      transform: scale(0.95);
-    }
-  }
+  cursor: pointer;
+  width: 50%;
+  outline: none;
+  border: none;
+  background-image: var(--gradient);
+  color: #000000;
+  border-radius: 25px;
+  font-size: 14.5px;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease;
 
+  &:hover {
+    transform: scale(0.95);
+  }
+}
 
 /* Next & previous buttons */
 .prev,
@@ -429,16 +433,16 @@ button {
   border-radius: 10px;
 }
 
-.today-info>div:not(:last-child) {
+.today-info > div:not(:last-child) {
   margin: 0 0 10px 0;
 }
 
-.today-info>div .title {
+.today-info > div .title {
   float: left;
   font-weight: 700;
 }
 
-.today-info>div .value {
+.today-info > div .value {
   float: right;
 }
 
@@ -450,7 +454,7 @@ button {
   border-radius: 10px;
 }
 
-.week-list>li {
+.week-list > li {
   float: left;
   padding: 15px;
   cursor: pointer;
@@ -458,26 +462,26 @@ button {
   border-radius: 10px;
 }
 
-.week-list>li:hover {
+.week-list > li:hover {
   transform: scale(1.1);
   background: #fff;
   color: #222831;
-  box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
 }
 
-.week-list>li.active {
+.week-list > li.active {
   background: #fff;
   color: #222831;
   border-radius: 10px;
 }
 
-.week-list>li .day-name {
+.week-list > li .day-name {
   display: block;
   margin: 10px 0 0 0;
   text-align: center;
 }
 
-.week-list>li .day-icon {
+.week-list > li .day-icon {
   display: flex;
   margin-top: 20px;
   justify-content: center;
@@ -488,11 +492,11 @@ button {
   font-size: 35px;
 }
 
-.week-list>li .day-icon img {
+.week-list > li .day-icon img {
   filter: drop-shadow(0 0 2px white);
 }
 
-.week-list>li .day-temp {
+.week-list > li .day-temp {
   display: block;
   text-align: center;
   margin-top: 15px;
@@ -510,7 +514,7 @@ button {
   border: none;
   border-radius: 25px;
   padding: 10px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-image: var(--gradient);
   color: #000000;
   font-weight: 700;

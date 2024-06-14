@@ -3,140 +3,161 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        CropSmart - Home page
-    </title>
+    <title>CropSmart - Home page</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexstyle.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/indexstyle.css') }}"
+    />
 
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,500&family=Roboto:ital,wght@0,300;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    </head>
+  </head>
 
-    <body>
-        <header class="header">
-            <a href="#" class="logo">CropSmart</a>
-        
-            <input type="checkbox" id="check">
-            <label for="check" class="icons">
-                <i class="bx bx-menu" id="menu-icon"></i>
-                <i class="bx bx-x" id="close-icon"></i>
-            </label>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">CropSmart</a>
 
-            <nav class="navbar">
-                <a href="#" class="home" onclick="movecrop()" style="--i:0">Crop Recommendation</a>
-                <a href="#" class="home" onclick="movepest()" style="--i:1">Pest Identification</a>
-                <a href="#" class="home" onclick="moveweed()" style="--i:2">Weed Identification</a>
-                <a href="#" class="leave" onclick="moveabout()" style="--i:3">About</a>
-            </nav>
-        </header>
+      <input type="checkbox" id="check" />
+      <label for="check" class="icons">
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <i class="bx bx-x" id="close-icon"></i>
+      </label>
 
+      <nav class="navbar">
+        <a href="#" class="home" onclick="movecrop()" style="--i: 0"
+          >Crop Recommendation</a
+        >
+        <a href="#" class="home" onclick="movepest()" style="--i: 1"
+          >Pest Identification</a
+        >
+        <a href="#" class="home" onclick="moveweed()" style="--i: 2"
+          >Weed Identification</a
+        >
+        <a href="#" class="leave" onclick="moveabout()" style="--i: 3">About</a>
+      </nav>
+    </header>
 
-        <section class="container flex">
-            <div class="top-container">
-                <div class="main-container">
-                    <div class="weather-side">
-                      <div class="weather-gradient"></div>
-                      <div class="date-container">
-                        <h2 class="date-dayname"></h2>
-                        <span class="date-day"></span>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span class="location"></span>
-                      </div>
-                      <div class="weather-container">
-                        <span class="weather-icon"></span>
-                        <h1 class="weather-temp"></h1>
-                        <h3 class="weather-desc"></h3>
-                      </div>
-                    </div>
-                    <div class="info-side">
-                      <div class="today-info-container">
-                        <div class="today-info">
-                          <div class="humidity">
-                            <span class="title"
-                              ><i class="fa-solid fa-droplet"></i> HUMIDITY</span
-                            >
-                            <span class="value"></span>
-                            <div class="clear"></div>
-                          </div>
-                          <div class="wind">
-                            <span class="title"
-                              ><i class="fa-solid fa-wind"></i> WIND</span
-                            >
-                            <span class="value"></span>
-                            <div class="clear"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="week-container">
-                        <ul class="week-list">
-                          <li>
-                            <span class="day-name"></span>
-                            <span class="day-temp"></span>
-                            <span class="day-icon"></span>
-                          </li>
-                          <li>
-                            <span class="day-name"></span>
-                            <span class="day-temp"></span>
-                            <span class="day-icon"></span>
-                          </li>
-                          <li>
-                            <span class="day-name"></span>
-                            <span class="day-temp"></span>
-                            <span class="day-icon"></span>
-                          </li>
-                          <li>
-                            <span class="day-name"></span>
-                            <span class="day-temp"></span>
-                            <span class="day-icon"></span>
-                          </li>
-                          <div class="clear"></div>
-                        </ul>
-                      </div>
-                      <div class="location-container">
-                        <input
-                          class="location-input"
-                          type="text"
-                          id="city"
-                          placeholder="Enter your city"
-                        />
-                      </div>
-                    </div>
-                  </div>
-              </div>
-      
-            <div class="m-container">
-                <h2>Explore!</h2>
-                <div class="new-container">
-                  <div class="left fade">
-                    <img
-                      id="crop-image"
-                      src="static/img/banana.jpg"
-                      alt="Image not avaliable"
-                      src=""
-                      class="img-side"
-                      alt=""
-                    />
-                  </div>
-                  <div class="right">
-                    <div class="card-content">
-                      <h1 id="crop-title">Crop Name</h1>
-                      <p id="crop-description">Crop Description</p>
-                      <button onclick="getinfo()">Get More Details</button>
-                    </div>
-                  </div>
-                  <a class="prev" id="pbutton">&#10094;</a>
-                  <a class="next" id="nbutton">&#10095;</a>
-                </div>
+    <section class="container flex">
+      <div class="top-container">
+        <div class="main-container">
+          <div class="weather-side">
+            <div class="weather-gradient"></div>
+            <div class="date-container">
+              <h2 class="date-dayname"></h2>
+              <span class="date-day"></span>
+              <i class="fa-solid fa-location-dot"></i>
+              <span class="location"></span>
             </div>
-          </section>
+            <div class="weather-container">
+              <span class="weather-icon"></span>
+              <h1 class="weather-temp"></h1>
+              <h3 class="weather-desc"></h3>
+            </div>
+          </div>
+          <div class="info-side">
+            <div class="today-info-container">
+              <div class="today-info">
+                <div class="humidity">
+                  <span class="title"
+                    ><i class="fa-solid fa-droplet"></i> HUMIDITY</span
+                  >
+                  <span class="value"></span>
+                  <div class="clear"></div>
+                </div>
+                <div class="wind">
+                  <span class="title"
+                    ><i class="fa-solid fa-wind"></i> WIND</span
+                  >
+                  <span class="value"></span>
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+            <div class="week-container">
+              <ul class="week-list">
+                <li>
+                  <span class="day-name"></span>
+                  <span class="day-temp"></span>
+                  <span class="day-icon"></span>
+                </li>
+                <li>
+                  <span class="day-name"></span>
+                  <span class="day-temp"></span>
+                  <span class="day-icon"></span>
+                </li>
+                <li>
+                  <span class="day-name"></span>
+                  <span class="day-temp"></span>
+                  <span class="day-icon"></span>
+                </li>
+                <li>
+                  <span class="day-name"></span>
+                  <span class="day-temp"></span>
+                  <span class="day-icon"></span>
+                </li>
+                <div class="clear"></div>
+              </ul>
+            </div>
+            <div class="location-container">
+              <input
+                class="location-input"
+                type="text"
+                id="city"
+                placeholder="Enter your city"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <!-- <div class="content">
+      <div class="m-container">
+        <h2>Explore!</h2>
+        <div class="new-container">
+          <div class="left fade">
+            <img
+              id="crop-image"
+              src="static/img/banana.jpg"
+              alt="Image not avaliable"
+              src=""
+              class="img-side"
+              alt=""
+            />
+          </div>
+          <div class="right">
+            <div class="card-content">
+              <h1 id="crop-title">Crop Name</h1>
+              <p id="crop-description">Crop Description</p>
+              <button onclick="getinfo()">Get More Details</button>
+            </div>
+          </div>
+          <a class="prev" id="pbutton">&#10094;</a>
+          <a class="next" id="nbutton">&#10095;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- <div class="content">
             <div class="left">
                 <h2>crop Section</h2>
                 <p>To display images of crops and details</p>
@@ -152,17 +173,14 @@
 
             </div>
         </div>  -->
+  </body>
+  <script>
+    function moveabout() {
+      window.location.href = "/aboutpage";
+    }
+  </script>
 
-    </body>      
-    <script>
-        function moveabout(){
-            window.location.href = "/aboutpage";
-        }
-    </script>
+  <script src="{{ url_for('static', filename='js/indexscript.js') }}"></script>
 
-    
-<script src="{{ url_for('static', filename='js/indexscript.js') }}"></script>
-
-    <!-- <script type="text/javascript" src="js/indexscript.js"></script> -->
-
+  <!-- <script type="text/javascript" src="js/indexscript.js"></script> -->
 </html>
