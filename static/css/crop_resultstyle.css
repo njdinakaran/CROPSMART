@@ -183,11 +183,11 @@ body {
   margin-bottom: 20px;
 }
 
-.scontainer{
+.scontainer {
   display: flex;
   flex-direction: row;
 }
-.right{
+.right {
   margin: auto;
 }
 .left,
@@ -223,7 +223,8 @@ img {
 .right {
   padding: 50px 100px 50px 50px;
   display: flex;
-  flex-direction: column;}
+  flex-direction: column;
+}
 
 h3 {
   color: #877daf;
@@ -244,36 +245,44 @@ p {
 h5 {
   font-size: 15px;
 }
-.mybutton{
+.mybutton {
   margin: auto;
+  margin-bottom: 2%;
   display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 button {
-  width: 250px;
-  height: 50px;
-  border: none;
-  outline: none;
-  background: var(--gradient);
-  color: #040404;
   cursor: pointer;
-  border-radius: 20px;
-  font-size: 16.5px;
-  justify-content: center;
-  margin-bottom: 15px;
+  width: 50%;
+  outline: none;
+  border: none;
+  background-image: var(--gradient);
+  color: #000000;
+  border-radius: 25px;
+  font-size: 14.5px;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }
 
-.content{
+.content {
   padding: 15px;
   margin: 0px;
   display: flex;
   flex-direction: column;
 }
-.content p{
+.content p {
   margin: 10px 0 20px 0;
   line-height: 25px;
 }
-
 
 @media only screen and (max-width: 768px) {
   .container {
