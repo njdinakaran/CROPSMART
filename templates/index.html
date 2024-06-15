@@ -59,6 +59,7 @@
     </header>
 
     <section class="container flex">
+      <h1 style="margin-top: 10px; margin-left: 250px; color: azure;">Current Weather Information</h1><br>
       <div class="top-container">
         <div class="main-container">
           <div class="weather-side">
@@ -120,18 +121,19 @@
               </ul>
             </div>
             <div class="location-container">
-              <input
+              <p id="ptag">Default</p>
+              <select
                 class="location-input"
-                type="text"
+                
                 id="city"
                 placeholder="Enter your city"
-              />
+              ></select>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="m-container">
+      <div class="m-container" style="display: none;">
         <h2>Explore!</h2>
         <div class="new-container">
           <div class="left fade">
@@ -177,6 +179,17 @@
   <script>
     function moveabout() {
       window.location.href = "/aboutpage";
+    }   
+    window.onload= onPageLoad;
+
+    function onPageLoad(){
+      populateCityDropdown();
+      // Set default location to Chennai, Tamil Nadu
+      const defaultCity = "Chennai, Tamil Nadu";
+      document.getElementById("city").value = defaultCity;
+      getWeather(defaultCity);
+
+
     }
   </script>
 
