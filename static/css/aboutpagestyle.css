@@ -189,8 +189,7 @@ body {
   /* max-width: 75%; */
   margin: auto;
   height: auto;
-  margin-top: 7%;
-  /* background: white; */
+  margin-top: 25px;
   border-radius: 20px;
   /* box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3); */
 }
@@ -352,7 +351,7 @@ h1 {
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
   transition: transform 300ms ease;
   background-size: cover;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
 .pestup,
@@ -546,4 +545,56 @@ h1 {
   -webkit-animation-duration: 1.5s;
   animation-name: fade;
   animation-duration: 1.5s;
+}
+
+.devcon {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  width: 100%;
+  /* max-width: 75%; */
+  margin: auto;
+  height: auto;
+  margin-top: 8.5%;
+}
+
+.devcon h2 {
+  color: black;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.devcon span {
+  /* font-size: 15px; */
+  color: black;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.team-container {
+  display: flex;
+  padding-left: 20px;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  gap: 20px;
+}
+
+.team-member {
+  background-color: #222831;
+  border-radius: 20px;
+  box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  width: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-member h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
 }
