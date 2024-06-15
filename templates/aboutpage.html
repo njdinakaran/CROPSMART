@@ -51,6 +51,7 @@
         <a href="#" class="home" style="--i: 2" onclick="moveweed()"
           >Weed Identification</a
         >
+        <a href="#" class="home" style="--i: 2" onclick="movepest()">Pest Identification</a>
       </nav>
     </header>
     <section class="devcon">
@@ -182,6 +183,10 @@
     function moveweed() {
       window.location.href = `weed_predict`;
     }
+    function movepest(){
+window.location.href = "pest_predict";
+}
+
   </script>
   <script src="{{ url_for('static', filename='js/aboutscript.js') }}"></script>
 </html>

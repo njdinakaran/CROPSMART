@@ -1742,11 +1742,14 @@ function displayCrops(region) {
 
 let currentIndex = 0;
 const staticUrlPath = '{{ static_url_path }}';
-
+var crop=""
 function showCrop(index) {
-    const crop = detailedInfo[index];
+    crop = detailedInfo[index];
     if (!crop || !crop.image) {
-        return;
+        crop = fullcropdata[index];
+        console.log(crop);
+
+        crops=fullcropdata.length;
     }
     var imagepath = `static/img/${crop.image}`;
     document.getElementById('crop-image').src = imagepath;

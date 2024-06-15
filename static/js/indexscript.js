@@ -1482,127 +1482,21 @@ const cities = [
     {"city":"Coimbatore", "state":"Tamil Nadu"}
 ];
 
-// function promptForCityWithSuggestions() {
-//     let userInput = '';
-//     while (userInput === '' || !cities.some(city => city.city.toLowerCase().startsWith(userInput.toLowerCase()))) {
-//         userInput = prompt("Enter a city name:");
-//         if (userInput === null) return null; // User canceled
-//         // Display suggestions
-//         const suggestions = cities.filter(city => city.city.toLowerCase().startsWith(userInput.toLowerCase()));
-//         if (suggestions.length > 0) {
-//             // console.log("Suggestions:");
-//             // suggestions.forEach(city => console.log(city.city));
-//         } else {
-//             console.log("No suggestions found for '" + userInput + "'");
-//         }
-//     }
-//     console.log("userinput ===", userInput);
-//     mycityname = userInput;
-//     document.getElementById('city').innerText = userInput;
-//     console.log("You selected:", userInput);
-//     fetchWeather(userInput);
-//     return userInput;
-// }
+function populateCityDropdown() {
+  const select = document.getElementById('city');
+  cities.forEach(function(item) {
+      const option = document.createElement('option');
+      option.value = `${item.city}, ${item.state}`;
+      option.text = `${item.city}, ${item.state}`;
+      select.appendChild(option);
+  });
+}
 
-// function showPosition(position) {
-//     const latitude = position.coords.latitude;
-//     const longitude = position.coords.longitude;
-//     fetchCityName(latitude, longitude);
-// }
-
-// function showError(error) {
-//     switch(error.code) {
-//         case error.PERMISSION_DENIED:
-//         promptForCityWithSuggestions();
-//             break;
-//         case error.POSITION_UNAVAILABLE:
-//             alert("Location information is unavailable.");
-//             promptForCityWithSuggestions();
-//             break;
-//         case error.TIMEOUT:
-//             alert("The request to get user location timed out.");
-//             promptForCityWithSuggestions();
-//             break;
-//         case error.UNKNOWN_ERROR:
-//             alert("An unknown error occurred.");
-//             promptForCityWithSuggestions();
-//             break;
-//     }
-// }
-
-// function getLocation() {
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(showPosition, showError);
-//     } else {
-//         alert("Geolocation is not supported by this browser.");
-//         promptForCityWithSuggestions();
-//     }
-// }
-
-
-
-// //fetch location based on current location
-
-// function fetchCityName(latitude, longitude) {
-//     const apiKey = 'bdc_7ef6213578c94844915f32a5cc46c020'; // Replace with your actual API key
-//     const url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
-    
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(data => {
-//             const city = data.city || data.locality;
-//             document.getElementById('city').innerText =city;
-//             fetchWeather(city);
-//             currentCity = city;
-//             // Use the fetched city to get weather data or other information
-//         })
-//         .catch(error => {
-//             console.error('Error fetching city name:', error);
-//             promptForCity();
-//         });
-// }
-
-// //fetch weather details
-// function fetchWeather(city) {
-//     const apiKey = 'c31f6a98e766fa63e3fedbbf0fed011d'; // Replace with your OpenWeatherMap API key
-//     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-//     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-
-//     fetch(weatherUrl)
-//         .then(response => response.json())
-//         .then(data => {
-//             const weather = `Current Weather: ${data.weather[0].description}, Temperature: ${data.main.temp}°C`;
-//             document.getElementById('weather').innerText = weather;
-//         })
-//         .catch(error => {
-//             console.error('Error fetching weather data:', error);
-//         });
-
-//     fetch(forecastUrl)
-//         .then(response => response.json())
-//         .then(data => {
-//             let forecast = '4-Day Forecast:';
-//             for (let i = 0; i < data.list.length; i += 8) { // 8 intervals per day
-//                 const date = new Date(data.list[i].dt_txt).toDateString();
-//                 const temp = data.list[i].main.temp;
-//                 const desc = data.list[i].weather[0].description;
-//                 forecast += `<br>${date}: ${desc}, Temperature: ${temp}°C`;
-//             }
-//             document.getElementById('forecast').innerHTML = forecast;
-//         })
-//         .catch(error => {
-//             document.getElementById('weather').innerText="Please enter correct city name.";
-//             document.getElementById('forecast').innerHTML = "Refresh the page to enter the city name again";
-//             document.getElementById('city').innerText="";
-//             console.error('Error fetching forecast data:', error);
-//         });
-// }
-
-// window.onload = getLocation;
-
-document.getElementById("city").addEventListener("input", function () {
+document.getElementById("city").addEventListener("change", function () {
     var city = this.value;
     getWeather(city);
+    document.getElementById('ptag').style.display = 'none';
+
   });
   
   async function getWeather(city) {
@@ -1825,7 +1719,8 @@ function movecrop() {
     if (cityValue.trim().length === 0) {
       alert("Please enter a correct city name to proceed");
     } else {
-      const encodedCityValue = encodeURIComponent(cityValue);
+      const cityName = cityValue.split(',')[0].trim(); // Get the city name
+      const encodedCityValue = encodeURIComponent(cityName);
       window.location.href = "/crop_predict?city=" + encodedCityValue;
     }
   }
