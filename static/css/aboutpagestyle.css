@@ -242,20 +242,32 @@ body{
   flex: 1; /* Allow the content to grow and take up remaining space */
   padding: 16px;
 }
+
+h1{
+  color: white;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
 /* get info button */
 .card-content button{
-  width: 250px;
-  height: 50px;
-  border: none;
-  outline: none;
-  background: var(--gradient);
-  color: #040404;
   cursor: pointer;
-  border-radius: 20px;
-  font-size: 16.5px;
-  justify-content: center;
-  margin-top: 20px;
-  margin-left: 25%;
+  width: 50%;
+  outline: none;
+  border: none;
+  background-image: var(--gradient);
+  color: #000000;
+  border-radius: 25px;
+  font-size: 14.5px;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }
 
 /* Next & previous buttons */
@@ -318,10 +330,10 @@ body{
 }
 
 .pestnew-container {
-  /* border: 1px solid red; */
+  /* border: 1px solid rgb(0, 255, 170); */
   display: flex;
   width: 100%;
-  height: 400px;
+  height: 100%;
   border-radius: 20px;
   box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
   background-color: #222831;
@@ -336,46 +348,50 @@ body{
 
 .pestimg-side {
   position: relative;
-  height: 100%;
-  flex: 0 0 auto;
-  border-radius: 25px;
+  height: 500px;
+  /* flex: 0 0 auto; */
+  border-radius: 20px 20px 0px 0px;
   width: 100%;
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
   transition: transform 300ms ease;
-  transform: translateZ(0) scale(1.02) perspective(1000px);
-  float: left;
   background-size: cover;
   object-fit: cover;
 }
 
 .pestup,
 .pestdown {
-  height: 100%;
-  width: 50%;
+  height: 50%;
+  width: 100%;
 }
 
-.pestup {
+/* .pestup {
   padding: 25px 40px;
-}
+} */
 
 .pestcard-content {
-  flex: 1; /* Allow the content to grow and take up remaining space */
+  /* flex: 1;  Allow the content to grow and take up remaining space */
   padding: 16px;
 }
+
 /* get info button */
 .pestcard-content button{
-  width: 250px;
-  height: 50px;
-  border: none;
-  outline: none;
-  background: var(--gradient);
-  color: #040404;
   cursor: pointer;
-  border-radius: 20px;
-  font-size: 16.5px;
-  justify-content: center;
-  margin-top: 20px;
-  margin-left: 25%;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-image: var(--gradient);
+  color: #000000;
+  border-radius: 25px;
+  font-size: 14.5px;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }
 
 /* Next & previous buttons */
@@ -396,11 +412,11 @@ body{
 }
 
 .pestprev {
-  left: 0;
+  left: 1%;
 }
 /* Position the "next button" to the right */
 .pestnext {
-  right: 0;
+  right: 1%;
 }
 /* On hover, add a black background color with a little bit see-through */
 .pestprev:hover,
@@ -422,7 +438,7 @@ body{
   max-width: 90%;
   width: 50%;
   /* max-width: 75%; */
-  margin: 30px;
+  margin: auto;
   height: auto;
   /* background: white; */
   border-radius: 20px;
@@ -439,10 +455,9 @@ body{
 }
 
 .weednew-container {
-  /* border: 1px solid red; */
   display: flex;
   width: 100%;
-  height: 400px;
+  height: 100%;
   border-radius: 20px;
   box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
   background-color: #222831;
@@ -457,46 +472,49 @@ body{
 
 .weedimg-side {
   position: relative;
-  height: 100%;
-  flex: 0 0 auto;
-  border-radius: 25px;
+  height: 500px;
+  /* flex: 0 0 auto; */
+  border-radius: 20px 20px 0px 0px;
   width: 100%;
   box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
   transition: transform 300ms ease;
-  transform: translateZ(0) scale(1.02) perspective(1000px);
-  float: left;
   background-size: cover;
   object-fit: cover;
 }
 
 .weedup,
 .weeddown {
-  height: 100%;
-  width: 50%;
+  height: 50%;
+  width: 100%;
 }
 
-.weedup {
+/* .weedup {
   padding: 25px 40px;
-}
+} */
 
 .weedcard-content {
-  flex: 1; /* Allow the content to grow and take up remaining space */
+  /* flex: 1;  Allow the content to grow and take up remaining space */ 
   padding: 16px;
 }
 /* get info button */
 .weedcard-content button{
-  width: 250px;
-  height: 50px;
-  border: none;
-  outline: none;
-  background: var(--gradient);
-  color: #040404;
   cursor: pointer;
-  border-radius: 20px;
-  font-size: 16.5px;
-  justify-content: center;
-  margin-top: 20px;
-  margin-left: 25%;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-image: var(--gradient);
+  color: #000000;
+  border-radius: 25px;
+  font-size: 14.5px;
+  padding: 10px;
+  margin-top: 15px;
+  font-weight: 700;
+  box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease;
+
+  &:hover {
+    transform: scale(0.95);
+  }
 }
 
 /* Next & previous buttons */
@@ -517,11 +535,11 @@ body{
 }
 
 .weedprev {
-  left: 0;
+  left: 1%;
 }
 /* Position the "next button" to the right */
 .weednext {
-  right: 0;
+  right: 1%;
 }
 /* On hover, add a black background color with a little bit see-through */
 .weedprev:hover,
