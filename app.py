@@ -27,7 +27,7 @@ app = Flask(__name__,static_folder="static/")
 import os
 
 import google.generativeai as genai
-api_key = "AIzaSyBmCY0csZo_fFovRoVnHkLDfE41N4jRUvQ"
+api_key = "**********************************"
 genai.configure(api_key=api_key)
 
 # genai.configure(api_key=os.environ[GoogleApiKey])
