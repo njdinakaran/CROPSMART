@@ -7,14 +7,14 @@ Crop Smart is a cutting-edge deep learning-powered web application designed to r
 ✅ Pest Sense – Identifies pests from images and provides tailored solutions for pest management.\
 ✅ Weed Wizard – Detects weeds and suggests the most effective removal strategies.\
 ✅ User-Friendly Interface – Built with HTML, CSS, JavaScript, ensuring seamless interaction.\
-✅ Robust Deep Learning Models – Implemented using TensorFlow Lite, Pickle, and H5 models for high accuracy.\
+✅ Robust Deep Learning Models – Implemented using TensorFlow Lite, Pickle, and H5 models for high accuracy.
 
 
 # ⚙️ Tech Stack
 🚀 Deep Learning – TensorFlow, Keras\
 🖥 Backend – Python (Flask)\
 🌐 Frontend – HTML, CSS, JavaScript\
-📊 Model Training – Jupyter Notebook, Google Colab\
+📊 Model Training – Jupyter Notebook, Google Colab
 
 # 🌍 Impact
 Crop Smart is designed to bridge the gap between AI and agriculture, providing real-time, accurate predictions to help farmers optimize their yield and tackle challenges effectively. With this tool, we aim to drive agricultural innovation and contribute to sustainable farming practices.
